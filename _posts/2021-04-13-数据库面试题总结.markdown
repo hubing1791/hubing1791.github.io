@@ -1,5 +1,5 @@
 ---
-title: 更新数据库下所有表
+title: 数据库面试题总结
 author: not_you
 date: 2021-04-13 28:51:00 +0800
 categories: ["数据库"，"面试题"]
