@@ -3,12 +3,12 @@ title: 更新数据库下所有表
 author: not_you
 date: 2021-04-14 13::00 +0800
 categories: ["数据库","具体需求"]
-tags: [数据库]
+tags: [数据库,具体需求]
 ---
 
 今天在项目开发中，发现了一个小问题，使得需要修改某个数据库下所有表的某个字段。
 
-虽然实际上手动修改也很快，但是决定学习并实现一下利用一个完整的sql语句在mysql下实现。
+虽然实际上手动修改也很快，但是决定学习并实现一下利用一个过程在mysql下实现。
 
 **查询某个数据库表下的所有的表名**
 
@@ -38,7 +38,7 @@ DECLARE CONTINUE HANDLER FOR NOT FOUND SET XXX = TRUE;
 
 **使用loop循环实现**
 
-完整的如下，这是模板，修改后即可使用。注意mysql中需要先生成存储过程再调用
+完整的如下，这是模板，一些地方我替换成了无用信息，修改后即可使用。注意mysql中需要先生成存储过程再调用
 
 ``` sql 
 CREATE DEFINER=`root`@`%` PROCEDURE `update_all`()
@@ -54,15 +54,14 @@ BEGIN
   OPEN cur; 
 		-- 开始循环（loop循环）
 		update_loop: LOOP
-			-- 提取游标里的数据，这里只有一个，多个的话也一样；
+			-- 提取游标里的数据
 			FETCH cur INTO a;
 			
 			-- 声明结束的时候
 			IF done THEN
 				LEAVE update_loop;
 			END IF;
- 
-			-- 要循环的事件，使用了动态sql拼接alter语句，直接写的话报错		
+ 	
 			set SQL_CONACT = concat(略); -- 拼接
 			set @sql = SQL_CONACT;  
 			prepare stmt from @sql; 	-- 预处理
