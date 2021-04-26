@@ -7,38 +7,44 @@ tags: [刷题]
 
 ---
 
-把之前的刷题内容整理一波,前半部分
+把之前的刷题内容和笔记整理一波,前半部分
 
-### 相关链接
+### git链接
 
 [我的leetcode刷题记录](https://github.com/hubing1791/my_leetcode)
 
-## 20_10_10
+### 20_10_10
 
-1.**有效括号：**  
+#### 20.有效括号：  
 
-[20_有效括号](https://leetcode-cn.com/problems/valid-parentheses/)  
+[有效括号](https://leetcode-cn.com/problems/valid-parentheses/)  
+
 （1）使用list构造栈时进行了测试，空列表是不可以取值的，会报越界  
-（2）list可以直接用下标修改内容，可以很方便的做成栈，甚至不需要栈元素大小统一  
 
-2.**conda更新出问题scrapy更新出问题：**  
-（1）conda无论如无法更新，最后发现是没有安装openssl。对于scrapy的tor环境配置，一开始使用chrome没法登陆，研究后明白了，cow软件是将socks5协议均转为http，因此即便是https开头的网址配置时也要设置协议为http
+（2）list可以直接用下标修改内容，可以很方便的做成栈，不需要栈元素大小统一  
 
 ## 2020_10_11
-**1.合并两个有序链表:**  
-[21_合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+#### 21.合并两个有序链表:
 
-**2.移除有序链表里的重复元素**  
-[26_移除有序链表里的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)  
-（1）类似len(xx)这样的，如果写在条件里，每次都会计算从而变慢  
-（2）这题一开始的解法写出了不必要的条件判断语句  
+[合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
 
-**3.移除元素**  
-[27_移除元素](https://leetcode-cn.com/problems/remove-element/)  
-（1）还是写出了无用的判断条件,参见精选解法的双指针，只需要用两个指针将要求以外的元素向前写即可，但我想复杂了还利用了类似快排的前后交换法，着实没有必要
+（1）实现了c语言的版本
 
-## 2020_10_14
-**1.字符串匹配**  
+#### 26.移除有序链表里的重复元素 
+[移除有序链表里的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)  
+
+（1）类似len(xx)这样的，如果写在条件里，每次都会计算从而变慢
+
+（2）这题一开始实现的解法写出了不必要的条件判断语句，写了4个版本。无意间发现for循环慢一些。查资料证实了这一点，但是当迭代对象已经存在时则是for快一点。[参考资料](https://blog.csdn.net/Vector97/article/details/90136777)  
+
+#### 27.移除元素  
+[移除元素](https://leetcode-cn.com/problems/remove-element/) 
+
+(1）还是写了无用的判断条件,参见精选解法的双指针，只需要用两个指针将要求以外的元素向前写即可，但我想复杂了还利用了类似快排的前后交换法，着实没有必要
+
+### 2020_10_14
+
+#### 28.字符串匹配**  
 [28_字符串匹配](https://leetcode-cn.com/problems/implement-strstr/)  
 （1）学习了KMP算法的初步版本并实现之  
 （2）教材和网上材料的下标都是从1开始的，很长时间才反应过来并修改
