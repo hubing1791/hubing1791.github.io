@@ -1,0 +1,344 @@
+---
+title: leetcode刷题整理第一部分
+author: not_you
+date: 2021-04-26 16:33:00 +0800
+categories: ["leetcode"]
+tags: [刷题]
+
+---
+
+把之前的刷题内容整理一波,前半部分
+
+### 相关链接
+
+[我的leetcode刷题记录](https://github.com/hubing1791/my_leetcode)
+
+## 20_10_10
+
+1.**有效括号：**  
+
+[20_有效括号](https://leetcode-cn.com/problems/valid-parentheses/)  
+（1）使用list构造栈时进行了测试，空列表是不可以取值的，会报越界  
+（2）list可以直接用下标修改内容，可以很方便的做成栈，甚至不需要栈元素大小统一  
+
+2.**conda更新出问题scrapy更新出问题：**  
+（1）conda无论如无法更新，最后发现是没有安装openssl。对于scrapy的tor环境配置，一开始使用chrome没法登陆，研究后明白了，cow软件是将socks5协议均转为http，因此即便是https开头的网址配置时也要设置协议为http
+
+## 2020_10_11
+**1.合并两个有序链表:**  
+[21_合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+
+**2.移除有序链表里的重复元素**  
+[26_移除有序链表里的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/)  
+（1）类似len(xx)这样的，如果写在条件里，每次都会计算从而变慢  
+（2）这题一开始的解法写出了不必要的条件判断语句  
+
+**3.移除元素**  
+[27_移除元素](https://leetcode-cn.com/problems/remove-element/)  
+（1）还是写出了无用的判断条件,参见精选解法的双指针，只需要用两个指针将要求以外的元素向前写即可，但我想复杂了还利用了类似快排的前后交换法，着实没有必要
+
+## 2020_10_14
+**1.字符串匹配**  
+[28_字符串匹配](https://leetcode-cn.com/problems/implement-strstr/)  
+（1）学习了KMP算法的初步版本并实现之  
+（2）教材和网上材料的下标都是从1开始的，很长时间才反应过来并修改
+
+## 2020_10_15
+**1.查找插入位置**  
+[35_查找插入位置](https://leetcode-cn.com/problems/search-insert-position/)  
+（1）使用二分查找结合递归实现
+
+## 2020_10_16
+**1.count and say**  
+[38_count and say](https://leetcode-cn.com/problems/count-and-say/)  
+（1）算一道趣味题吧，比较简单，做的时候没有注意边界值处理浪费了一些时间 
+
+**2.最大子序和**  
+[53_最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)  
+（1）动态规划版本中发现自己写的最大值求职不如直接利用自带函数max()
+
+## 2020_10_22
+**1.最后一个单词的长度**  
+[58_最后一个单词的长度](https://leetcode-cn.com/problems/length-of-last-word/)  
+（1）如果从最后一个字母往回倒，需要考虑' '这样的情况，因为这种情况下先去空格就会把字符串清空，再用索引就越界了。仅一个单词的例如'hello'也一样，因为只有一个词且没有空格，如果倒回时按照检查前面是否有空格就会越界
+
+## 2020_10_26
+**1.加一**  
+[66_加一](https://leetcode-cn.com/problems/plus-one/)  
+
+## 2020_10_27
+**1.二进制**  
+[67_二进制](https://leetcode-cn.com/problems/add-binary/)  
+（1）就是字符串处理，没什么难度
+
+**2.x的平方根**  
+[69_x的平方根](https://leetcode-cn.com/problems/sqrtx/)  
+（1）二分查找，答案给了其他数学方法没有实现
+
+**3.爬楼梯**  
+[70_爬楼梯](https://leetcode-cn.com/problems/climbing-stairs)  
+（1）动态规划
+
+**4.删除排序链表中的重复元素**  
+[83_删除排序链表中的重复元素](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list)
+
+## 2020_10_28
+**1.合并两个有序数组**  
+[88_合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array)  
+（1）在python下可以投机取巧，并且python可以用a[2:8] = b这种方式赋值  
+（2）即便变量名不变，例如传参叫nums1，在类中重新写了nums1 = xxxx，此时nums1也不是原来的nums1而是临时变量
+
+## 2020_10_29
+**1.判断二叉树是否相同**  
+[100_判断二叉树是否相同](https://leetcode-cn.com/problems/same-tree)  
+（1）一开始写了前后续遍历，但是前后序都相同无法确定一个二叉树  
+（2）仅用循环结果无法判断[1,1][1,null,1]的区别
+（3）后来在遇到空节点时也写入结果，此时只需要一种遍历即可
+（4）直接使用递归判断更快  
+
+**2.判断对称二叉树**  
+[101_判断对称二叉树](https://leetcode-cn.com/problems/symmetric-tree/)  
+（1）一开始想用两个遍历对比，但是实际上行不通  
+（2）参考了官方的解法，在左右子树对称的扫描  
+
+**3.二叉树深度**  
+[104_二叉树深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree)  
+（1）使用递归即可  
+
+## 2020_10_31
+**1.两数相加**  
+[2_两数相加](https://leetcode-cn.com/problems/add-two-numbers/)  
+（1）采用了死板的解法，然而在相加时，即便链表长度不相等，用空链表代替，就可以按照统一的方式循环处理，不需要分类讨论，可以减少代码量。参见题解里的别人的答案
+
+**2.无重复字符的最长子串**  
+[3_无重复字符的最长子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/)  
+（1）参考了官方解答，使用滑动窗口加hash集合
+
+## 2020_11_5
+**1.零碎学习**  
+（1）python下安装了virtualenv但是无法使用virtualenv作为命令使用，使用软链接解决
+（2）可以直接用python3自带的venv模块安装虚拟环境
+
+## 2020_11_18
+**1.两个正序数组的中位数**  
+[4_两个正序数组的中位数](https://leetcode-cn.com/problems/median-of-two-sorted-arrays)  
+（1）投机取巧采用了拼接数组并sort，效果不错  
+（2）官方第一种方法log（m+n），第二种解答问题就没写
+
+**2.最长回文子串**  
+[5_最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/)  
+（1）参考了官方第一种解答动态规划
+
+## 2020_11_25
+**1.传递信息**  
+[LCD_7_传递信息](https://leetcode-cn.com/problems/chuan-di-xin-xi/)  
+（1）典型的动态规划题
+
+## 2020_11_25
+**1.正则表达式**  
+[10_正则表达式](https://leetcode-cn.com/problems/regular-expression-matching/)  
+（1）比较难，作为dp非常典型
+
+## 2020_11_29
+**1.水桶装最多水**  
+[11_水桶装最多水](https://leetcode-cn.com/problems/container-with-most-water/)  
+（1）贪心算法问题
+
+## 2020_11_30
+**1.三数之和**  
+[15_三数之和](https://leetcode-cn.com/problems/3sum)  
+（1）某次循环中删除了列表元素，后续循环会受影响
+（2）[一个很好的解释](https://leetcode-cn.com/problems/3sum/solution/pai-xu-shuang-zhi-zhen-zhu-xing-jie-shi-python3-by/)这个方法巧妙在，排序后判断，当nums[i]>0时可以直接返回了，因为后面不再有结果了
+（3）题目使用了排序来减少循环的复杂度，我写的通俗方法复杂度太高（虽然已经通过下标递增减少了复杂度）
+
+**2.电话号码的字母组合**  
+[17_电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/)  
+（1）题解花里胡哨，我用三个循环就做出来了且效果很好。非常简单不值得再看
+
+## 2020_12_01
+**1.删除倒数第n个链表**  
+[19_删除倒数第n个链表](https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list)  
+（1）新建一个头指向链表头，可以使得操作更方便  
+
+**2.生成括号**  
+[22_生成括号](https://leetcode-cn.com/problems/generate-parentheses/)  
+（1）深度优先搜索，递归实现即可
+
+## 2020_12_02
+**1.合并K个升序链表**  
+[19_合并K个升序链表](https://leetcode-cn.com/problems/merge-k-sorted-lists)  
+（1）这题考察的应该是堆问题，但是pyhton直接提供了堆的实现，用python实现不太合适。别的语言没学呢
+
+## 2020_12_03
+**1.下一个排列**  
+[31.下一个排列](https://leetcode-cn.com/problems/next-permutation/)  
+（1）这题考察的知识点不太好归纳，直接看的参考答案  
+
+**2.最长有效括号**  
+[32.最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/)  
+（1）用:取列表范围，越界无影响  
+（2）自己尝试用栈实现失败了  
+（3）按照官方解答写了一下顺序逆序匹配和动态规划，官方的栈解答也很有意思，就没写了  
+
+## 2020_12_04
+**1.合并二叉树**  
+[617.合并二叉树](https://leetcode-cn.com/problems/merge-two-binary-trees/)  
+（1）用递归实现很简单，也就是深度优先，广度优先有些麻烦。广度优先速度更快  
+
+**2.搜索旋转数组**  
+[33.搜索旋转数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)  
+（1）看了题解，觉得自己想多了，对于切割数组得到321456这种区间，根本无所谓内部是不是有增减，只要区间右端大于左端，就可以判断target在不在区间里就行了。  
+
+**3.在排序数组中查找第一个和最后一个位置**  
+[34.在排序数组中查找第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)  
+（1）二分查找微微改一下就行  
+
+**4.组合总和**  
+[39.组合综合](https://leetcode-cn.com/problems/combination-sum/)  
+（1）基本思路上来就对了，利用回溯，但是在减少循环次数上还是没想清楚，参考了别人的解答
+
+## 2020_12_05
+**1.除法**  
+[29.除法](https://leetcode-cn.com/problems/divide-two-integers/submissions/)  
+（1）这题要注意的点就是对最小值先加一次才能使用绝对值继续处理  
+（2）使用移位进行除法的思路值得学习  
+
+**2.全排列**  
+[46.全排列](https://leetcode-cn.com/problems/permutations/)  
+（1）这题遇到了局部变量有效范围的问题  
+
+**3.旋转图像**  
+[48.旋转图像](https://leetcode-cn.com/problems/rotate-image/)  
+（1）总的来说就是在找规律
+
+**4.抛售股票**  
+[126.抛售股票](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)  
+（1）一开始没处理好[]
+
+## 2020_12_06
+**1.跳跃游戏**  
+[55.跳跃游戏](https://leetcode-cn.com/problems/jump-game/)  
+（1）动态规划  
+（2）遇到了许多细节错误，并且可以用enumerate提高速度
+
+**2.合并区间**  
+[56.合并区间](https://leetcode-cn.com/problems/jump-game/)  
+（1）思路很容易，在实现方式上看了解答  
+
+**3.接雨水**  
+[42.接雨水](https://leetcode.com/problems/trapping-rain-water/)  
+（1）实现了官方第二种思路，要期末了其他的先跳过吧
+
+## 2020_12_31
+**1.判断平衡二叉树**  
+[110.判断平衡二叉树](https://leetcode-cn.com/problems/balanced-binary-tree/)  
+（1）递归，利用类似后续遍历来递归
+
+## 2021_1_2
+**1.K个一组翻转链表**  
+[25.K个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)  
+（1）思路看似很简单，写起来挺复杂的 
+
+**2.最小栈**  
+[155.最小栈](https://leetcode-cn.com/problems/min-stack)  
+（1）使用额外的辅助栈，也可以使用栈存储差值+额外的最小值  
+
+**3.二叉树中的最大路径和**  
+[124.二叉树中的最大路径和](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)  
+（1）官方解答很简洁，以某个点作为树得到的值判断下是否是最大值，继续向上传的时候只能加左右子树中的一个
+
+## 2021_1_3
+**1.二叉树的右视图**  
+[199.二叉树的右视图](https://leetcode-cn.com/problems/binary-tree-right-side-view/)  
+（1）直接想到了利用特殊的层序遍历来实现
+（2）deque比list快，因为deque实际上在移动指针
+
+**2.将有序数组转化为二叉搜索树**  
+[108.将有序数组转化为二叉搜索树](https://leetcode-cn.com/problems/convert-sorted-array-to-binary-search-tree/)  
+（1）比较简单，始终取中间值即可
+
+**3.二叉树的最近公共祖先**  
+[236.二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)  
+（1）独立做出来了，一开始没考虑某一个节点即为父节点的情况
+
+
+**4.零钱兑换**  
+[322.零钱兑换](https://leetcode-cn.com/problems/coin-change/)  
+（1）暴力加剪枝效果极好，但是一开始自己写的剪枝条件不够好，参考了大佬的
+
+*5.反转链表**  
+[205.反转链表](https://leetcode-cn.com/problems/reverse-linked-list/)  
+（1）easy
+
+**6.第k大的数**  
+[215.第K大的数](https://leetcode-cn.com/problems/kth-largest-element-in-an-array/)  
+（1）利用快排来实现
+
+**7.LRU缓存机制**  
+[146.LRU缓存机制](https://leetcode-cn.com/problems/lru-cache/)  
+（1）参考了答案，利用字典作为hashmap结合双链表实现 
+
+**8.二叉树层序遍历**  
+[102.二叉树层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)  
+（1）层序遍历，又一次使用了deque  
+
+## 2021_1_4
+**1.零钱兑换2**  
+[518.零钱兑换2](https://leetcode-cn.com/problems/coin-change-2/)  
+（1）动态规划经典题，看了答案  
+
+**2.两个栈实现队列**  
+[剑指offer09.两个栈实现队列](https://leetcode-cn.com/problems/yong-liang-ge-zhan-shi-xian-dui-lie-lcof/)  
+（1）双栈倒腾，两个后进先出就变成了后进后出了  
+
+**3.螺旋举证**  
+[54.螺旋矩阵](https://leetcode-cn.com/problems/spiral-matrix/)  
+（1）判断条件中非零值都是True  
+
+**4.将每个元素替换为右侧最大元素**  
+[1299.将每个元素替换为右侧最大元素](https://leetcode-cn.com/problems/replace-elements-with-greatest-element-on-right-side/)  
+（1）easy  
+
+**5.从前序与中序遍历序列构造二叉树**  
+[105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal)  
+（1）利用递归，参考了答案下一个别人解答
+
+**6.相交链表**  
+[160.相交链表](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/)  
+（1）拼接链表法，别人的答案更简洁  
+
+**7.单词拆分**  
+[139.单词拆分](https://leetcode-cn.com/problems/word-break/)  
+（1）dp问题  
+
+**8.二叉搜索树中第K小的数**  
+[230.二叉搜索树中第K小的数](https://leetcode-cn.com/problems/kth-smallest-element-in-a-bst/)  
+（1） 结合dfs加剪枝，nonlocal和global辨析  
+
+**9.扑克牌中顺子**  
+[剑指offer61.扑克牌中顺子](https://leetcode-cn.com/problems/bu-ke-pai-zhong-de-shun-zi-lcof/)  
+（1）有很多细节需要注意  
+
+**10.二叉树的直径**  
+[543.二叉树的直径](https://leetcode-cn.com/problems/diameter-of-binary-tree/)  
+（1）递归就完事了，合理使用 外部变量 
+
+**11.二叉树的路径总和**  
+[112.路径总和](https://leetcode-cn.com/problems/path-sum/)  
+（1）第一版有错误修了第二版，错误在于处理反馈的位置必须在叶节点  
+
+**12.最长公共子序列**  
+[1143.最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)  
+（1）二维动态规划问题，看的答案写的  
+（2）[这是解答链接](https://leetcode-cn.com/problems/longest-common-subsequence/solution/dong-tai-gui-hua-zhi-zui-chang-gong-gong-zi-xu-lie/)
+
+**13.环形链表**  
+[141.环形链表](https://leetcode-cn.com/problems/linked-list-cycle/)  
+（1）有hash表和快慢指针两种办法  
+
+**14.在每个树行中找最大值表**  
+[515.在每个树行中找最大值表](https://leetcode-cn.com/problems/find-largest-value-in-each-tree-row)  
+（1）层序遍历改，利用了deque  
+
+
+
