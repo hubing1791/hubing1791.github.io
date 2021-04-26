@@ -1,0 +1,188 @@
+---
+title: leetcode刷题整理第二部分
+author: not_you
+date: 2021-04-26 20:03:00 +0800
+categories: ["leetcode"]
+tags: [刷题]
+
+---
+
+把之前的刷题内容和笔记整理一波,后半部分
+
+### git链接
+
+[我的leetcode刷题记录](https://github.com/hubing1791/my_leetcode)
+
+### 503.下一个最大值2
+
+[503.下一个最大值2](https://leetcode-cn.com/problems/next-greater-element-ii/)
+（1）[单调栈用法介绍文章](https://leetcode-cn.com/problems/next-greater-element-i/solution/dan-diao-zhan-jie-jue-next-greater-number-yi-lei-w/)
+
+### 297.二叉树的序列化和反序列化
+
+[297.二叉树的序列化和反序列化](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/)
+（1）[参考链接](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/solution/python-jie-zhu-dui-lie-ji-chu-xie-fa-by-zedong/)
+（2）层序遍历
+
+### 162.寻找峰值
+
+[162.寻找峰值](https://leetcode-cn.com/problems/find-peak-element/)
+（1）二分查找变形
+
+### 221.最大正方形
+
+[221.最大正方形](https://leetcode-cn.com/problems/maximal-square/)
+（1）动态规划，一个格子和左，上，左上三个格子有关
+
+### 128.最长连续序列
+
+[128.最长连续序列](https://leetcode-cn.com/problems/longest-consecutive-sequence/)
+（1）借助集合，其实很简单
+
+### 560.和为K的数组
+
+[560.和为k的数组](https://leetcode-cn.com/problems/subarray-sum-equals-k/)
+（1）借助集合，其实很简单
+（2）collections模块的defaultdict可以用于计数，可以方便的实现前缀和
+
+### 560.字符串相加
+
+[560.字符串相加](https://leetcode-cn.com/problems/add-strings/)
+（1）字符串操作，easy
+
+### 剑指offer26.树的子结构
+
+[剑指offer26.树的子结构](https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof/)
+（1）利用层序遍历实现
+
+### 830.较大分组位置
+
+[830.较大分组位置](https://leetcode-cn.com/problems/positions-of-large-groups/)
+（1）很简单，但是要注意边界条件
+
+### 328.奇偶链表
+
+[328.奇偶链表](https://leetcode-cn.com/problems/odd-even-linked-list/)
+（1）题目解法很巧妙，用偶链表节点和它的下一个节点作为判断条件
+
+### 695.最大岛屿面积
+
+[695.最大岛屿面积](https://leetcode-cn.com/problems/max-area-of-island/)
+（1）可以用递归或者深度优先加栈，比较难
+
+### 103.二叉树的锯齿状遍历
+
+[103.二叉树的锯齿层序遍历](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
+（1）层序遍历改即可，这儿偷了懒，直接输出后反转
+
+### 49.字母同分异位词分组
+
+[49.字母同分异位词分组](https://leetcode-cn.com/problems/group-anagrams/)
+（1）使用字典，列表字典的key值必须是tuple
+（2）[这是参考的题解](https://leetcode-cn.com/problems/group-anagrams/solution/zi-mu-yi-wei-ci-fen-zu-by-leetcode-solut-gyoc/)
+
+### 62.不同路径
+
+[62.不同路径](https://leetcode-cn.com/problems/unique-paths/)
+（1）巨简单的动态规划，可以直接用公式实现 
+
+### 64.最小路径和
+
+[64.最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/)
+（1）比较简单的动态规划
+
+### 75.颜色分类
+
+[75.颜色分类](https://leetcode-cn.com/problems/sort-colors/)
+（1）参考了官方解答，三个都写了
+
+### 76.最小覆盖子串
+
+[76.最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/)
+（1）滑动窗口解决，具体实现的思路比较难。
+
+### 72.编辑距离
+
+[72.编辑距离](https://leetcode-cn.com/problems/minimum-window-substring/)
+（1）直接看的题解，巨难的动态规划 [题解](https://leetcode-cn.com/problems/edit-distance/solution/bian-ji-ju-chi-by-leetcode-solution/) 
+
+### 78.子集
+
+[78.子集](https://leetcode-cn.com/problems/subsets/)
+（1）递归传值，一个值表示位数，一个值0/1表示是否取这个位置的数
+（2）看了一个别人的题解迭代版代码，巨牛逼，四行实现全组合
+
+### 79.单词搜索
+
+[79.单词搜索](https://leetcode-cn.com/problems/word-search/)
+（1）方法思路类似于沉岛法，受到评论区启发，可以在深度优先的时候先修改字母，出去的时候改回来。写的速度不大行，有点慢。需要注意及时跳出
+
+### 283.移动零
+
+[283.移动零](https://leetcode-cn.com/problems/move-zeroes/)
+（1）虽然是个简单题，因为要求相对顺序不变，一开始想了冒泡，但是看答案有o(n)的双指针法，参考了答案。
+（2）参考答案思路写出来的很烂，判断条件太多了，按答案思想，非零数不停往左换就可以把0挤走了
+
+### 84.柱状图中最大矩形
+
+[84.柱状图中最大矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram)
+（1）看官方解答写的，写出来巨慢，还没研究为啥 
+
+### 94.二叉树的中序遍历
+
+[94.二叉树的中序遍历](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
+（1）重要的基础题
+
+### 96.不同的二叉搜索树
+
+[96.不同的二叉搜索树](https://leetcode-cn.com/problems/unique-binary-search-trees/)
+（1）公式法天秀，但是利用递归，相当于选一个根，然后左右部分划为同类的子问题，可以利用迭代解决
+
+### 剑指offer03.数组中的重复元素
+
+[剑指offer03](https://leetcode-cn.com/problems/shu-zu-zhong-zhong-fu-de-shu-zi-lcof/)
+（1）用hash表秒杀 
+
+### 剑指offer04.二维数组中的查找
+
+[剑指offer04](https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/)
+（1） 从右上角开始则此题破解 
+
+### 剑指offer07.重建二叉树
+
+[剑指offer07](https://leetcode-cn.com/problems/zhong-jian-er-cha-shu-lcof/)
+（1）再做一遍温习一下 
+
+### 剑指offer10-1.斐波那契数列
+
+[剑指offer10-1](https://leetcode-cn.com/problems/fei-bo-na-qi-shu-lie-lcof/)
+（1）直接用迭代实现 
+
+### 剑指offer13.机器人的运动范围
+
+[剑指offer13](https://leetcode-cn.com/problems/ji-qi-ren-de-yun-dong-fan-wei-lcof/)
+（1）上来想到的是沉岛法,但是细节上可以改进，比如其实递归只要朝右和朝下就行了
+
+### 剑指offer14-1.剪绳子1
+
+[剑指offer14_1](https://leetcode-cn.com/problems/jian-sheng-zi-lcof/)
+（1）题解使用了数学方法，通过算术均值几何不等式，推导得出应尽可能以3为长度分
+（2）math.pow复杂度为o（1）
+
+### 剑指offer15.二进制中1的位数
+
+[剑指offer15](https://leetcode-cn.com/problems/er-jin-zhi-zhong-1de-ge-shu-lcof/)
+（1）利用&1判断最后一位是不是1，用移位运算减小数字
+
+### 剑指offer16.数的整数次幂
+
+[剑指offer16](https://leetcode-cn.com/problems/shu-zhi-de-zheng-shu-ci-fang-lcof/)
+（1）这题关键在于减少运算次数，比如5次可以用2次幂乘2次再乘一次
+
+### 143.重排链表
+
+[重排链表](https://leetcode-cn.com/problems/reorder-list/)
+（1）一种利用字典先取出全部节点再组合
+（2）另一种快慢指针，反转后半段链表，再合并两个链表
+
+（3）值得注意的是边界值的选择，例如如何移动快慢链表，怎样使得链表长度奇数偶数使用同一套操作实现
