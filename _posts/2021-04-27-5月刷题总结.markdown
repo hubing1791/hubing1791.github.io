@@ -1,0 +1,40 @@
+---
+title: 五月份刷题记录
+author: not_you
+date: 2021-04-27 00:03:00 +0800
+categories: ["leetcode"]
+tags: [刷题]
+
+---
+
+### git链接
+
+[我的leetcode刷题记录](https://github.com/hubing1791/my_leetcode)
+
+### 958.二叉树的完全性检验
+
+[题目链接](https://leetcode-cn.com/problems/check-completeness-of-a-binary-tree/)
+
+（1）直接的思路是。利用层序遍历，并对节点编号，子节点编号为父节点的两倍或者两倍加一（对应左右节点），遍历结束后看是否是不断数字的单增序列即可，最后的判断不用遍历，因为是主动编的号，只要看最后一个数等于长度与否即可。
+
+(2)一看答案思路一样的，答案写法更简洁。不过没什么差
+
+### 92.反转链表2
+
+[题目链接](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+
+（1）总共需要找到4个节点，left的前节点，left，right的后节点，right，但是存在前后节点不存在的情况。
+
+（2）对于1中的情况，left无前节点添加一个新的头即可使得统一处理方式，而right后节点不存在不影响处理
+
+（3）一开始没看错题了，left和right指位置，当成val值了
+
+（4）第二版写了一个一次遍历版
+
+### 470,用 Rand7() 实现 Rand10()
+
+[题目链接](https://leetcode-cn.com/problems/implement-rand10-using-rand7/)
+
+（1）经典实现方式，先转化成一个均匀的49上的分布，对于多出来的再调用子集一次即可，连续不中的概率会持续降低
+
+（2）题解给了继续利用被拒绝的数的算法，但是代码反而便繁琐了，效率没有明显提升

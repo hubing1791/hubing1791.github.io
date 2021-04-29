@@ -30,7 +30,7 @@ set marked =  (SELECT COUNT(DISTINCT id)  as `marked` FROM xxx WHERE judge_submi
 
 这样显示的结果就会看着比较舒服，如下图
 
-![显示的结果](E:\blog_of_me\github_version\_data\picture\2021_04_25\1.png)
+![截图]({{site.url}}/assets/img/2020_04_25/1.png)
 
 **获取动态语句里的但单一查询结果的方法**
 
