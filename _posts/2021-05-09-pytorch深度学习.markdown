@@ -1,0 +1,16 @@
+---
+title: pytorch深度学习
+author: not_you
+date: 2021-05-09 00:00:00 +0800
+categories: ["机器学习"]
+tags: [机器学习,深度学习]
+
+---
+
+### 安装
+
+相关的网站：
+
+[anaconda下载](https://www.anaconda.com/products/individual)
+
+[cuda下载](https://developer.nvidia.com/zh-cn/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=10&target_type=exelocal)
