@@ -2,7 +2,7 @@
 title: 更新数据库下所有表
 author: not_you
 date: 2021-04-14 13::00 +0800
-categories: ["数据库","具体需求"]
+categories: ["具体需求","数据库"]
 tags: [数据库,具体需求]
 ---
 
