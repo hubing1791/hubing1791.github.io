@@ -37,6 +37,7 @@ source ./envextract/bin/activate
 
 装的我想骂人，直接装根本不行。按照下面链接的方法，先把pyltp下下来，把里面的ltp目录里放上ltp项目下载下来的内容安装，也还是不行。先记录下
 
-[安装方法https://blog.csdn.net/u011214505/article/details/53335944)
+[安装方法](https://blog.csdn.net/u011214505/article/details/53335944)
 
 后续之后再说，主要是记录下使用虚拟环境
+

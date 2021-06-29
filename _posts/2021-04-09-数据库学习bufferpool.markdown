@@ -2,7 +2,7 @@
 title: 数据库学习bufferpool相关
 author: not_you
 date: 2021-04-9 22:34:00 +0800
-categories: ["数据库"]
+categories: [系统学习,"数据库学习"]
 tags: [数据库]
 ---
 
