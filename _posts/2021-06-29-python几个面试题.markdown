@@ -40,7 +40,7 @@ tags: ["python"]
 
 6.回归问题（5.6.还没看，之后回顾再看！）
 
-[Python 里为什么函数可以返回一个函数内部定义的函数？](Python 里为什么函数可以返回一个函数内部定义的函数？ - 陈伟的回答 - 知乎 https://www.zhihu.com/question/25950466/answer/31731502)
+[Python 里为什么函数可以返回一个函数内部定义的函数？](https://www.zhihu.com/question/25950466/answer/31731502)
 
 
 
