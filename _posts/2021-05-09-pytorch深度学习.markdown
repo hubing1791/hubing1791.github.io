@@ -2,7 +2,7 @@
 title: pytorch深度学习
 author: not_you
 date: 2021-05-09 00:00:00 +0800
-categories: [系统学习,"机器学习"]
+categories: ["系统学习","机器学习"]
 tags: [机器学习,深度学习]
 
 ---

@@ -1,0 +1,17 @@
+---
+title: go语言学习
+author: not_you
+date: 2021-05-09 00:00:00 +0800
+categories: ["系统学习","go语言学习"]
+tags: [go]
+
+---
+
+长期记录更新go语言学习内容
+
+### 安装
+
+相关的网站:
+
+[GO官网](https://golang.org/dl/)
+

@@ -1,0 +1,123 @@
+---
+title: 2021年第三季度刷题整理
+author: not_you
+date: 2021-06-30 00:00:00 +0800
+categories: ["leetcode"]
+tags: [刷题]
+
+---
+
+6月一整个月忙东忙西没咋写代码，手又有点生了==
+
+碎碎念一下，还是得保持自律啊TvT
+
+### git链接
+
+[我的leetcode刷题记录](https://github.com/hubing1791/my_leetcode)
+
+### 279.完全平方数
+
+[题目链接](https://leetcode-cn.com/problems/perfect-squares/)
+
+1.一个关键问题既是如何减少尝试次数，上来就想到的是，从大的开始试。然后在函数内部写一个递归，同时要维护一个最多尝试次数用于及时剪枝。最后实现效果还是比较好的
+
+2.看了题解，数学法不说了，还有动态规划法。动态规划法值得学一下[动态规划的官方题解](https://leetcode-cn.com/problems/perfect-squares/solution/wan-quan-ping-fang-shu-by-leetcode-solut-t99c/)
+
+3.动态规划法效率远差于暴力加剪枝，实际上，剪枝法避免了大量不必要的尝试，而动态规划法还是遍历了所有的情况
+
+
+
+### 136.只出现一次的数字
+
+[题目链接](https://leetcode-cn.com/problems/single-number/)
+
+1.题目要求线性复杂度，最好不使用额外空间。线性复杂度不难，可上集合，如何不使用额外空间思路有点卡住了。
+
+2.看了下题解豁然开朗，全部异或一下解决
+
+
+
+### 142.环形链表2
+
+[题目链接](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+
+1.不进阶很好实现，见git。借助集合即可
+
+2.空间复杂度o(1)需要借助快慢指针，思考过程复杂一些。[官方题解](https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-ii-by-leetcode-solution/)
+
+
+
+### 152.乘积最大子数组
+
+[题目链接](https://leetcode-cn.com/problems/maximum-product-subarray/)
+
+1.除了暴力法，没想到清晰的解决方案。思考了动态规划，没想出来怎么应对负负得正的情况。
+
+2.看了题解豁然开朗,同时维护两个值，一个尽可能小一个尽可能大[题解](https://leetcode-cn.com/problems/maximum-product-subarray/solution/cheng-ji-zui-da-zi-shu-zu-by-leetcode-solution/)
+
+
+
+### 43.字符串相乘
+
+[题目链接](https://leetcode-cn.com/problems/multiply-strings/)
+
+1.把每个位数都单独拆出来相乘，结果根据位数位置放进一个列表里，最后再拼回来即可。这样做绝对不会溢出
+
+
+
+### 169.多数元素
+
+[题目链接](https://leetcode-cn.com/problems/majority-element/)
+
+1.找到非常简单，最简单的是直接用计数的字典。没想到怎么弄成o(1)空间复杂度
+
+2.虽然是个简单题，方法异常的多。随机法，分治法这俩没啥意义，排序法还可以，如果用堆的话。最后的Boyer-Moore 投票算法符合题目最高要求[题解](https://leetcode-cn.com/problems/majority-element/solution/duo-shu-yuan-su-by-leetcode-solution/)
+
+
+
+### 207.课程表
+
+1.先有了简单的思路，按照配对，一顶可以通过先修关系一直向前寻找，可以维护一个set，只要在向前寻找时发现有课已经在set中，那必然出现了循环。思考后，发现这个思路下，必须得按照关系追踪，这在数列中是不方便的。
+
+2.想到了一个改良，生成一个课数目的列表，将对应课位置的值改为它的先修课，之后再验证这种指向是否形成环。但是这种方法没有办法应对a有b，c两个先修课的情况
+
+3.一个笨办法，将关系对按2转化一下，但是相当于是个二级列表指向，然后判断里面有没有循环。但是这样也很麻烦。
+
+4.还是看答案吧，这个涉及了图算法属于知识盲区了。仔细看了下代码，其实就是我3的思路[题解](https://leetcode-cn.com/problems/course-schedule/solution/ke-cheng-biao-by-leetcode-solution/)
+
+5.题解还有广度优先，思路是把能学的课学掉，之后继续学掉新的可以学的课，最后无课剩余就无环
+
+
+
+### 226.翻转二叉树
+
+[题目链接](https://leetcode-cn.com/problems/invert-binary-tree/)
+
+1.递归解决
+
+
+
+### 238.除自身以外数组的乘积
+
+[题目链接](https://leetcode-cn.com/problems/product-of-array-except-self/)
+
+1.先顺序乘，遇到某个数就跳过，然后把值赋值到对应位置，再从后往前乘，还是去掉对应位置的值赋值。
+
+2.耶，直接实现了最优算法。
+
+
+
+621.任务调度器
+
+[题目链接](https://leetcode-cn.com/problems/task-scheduler/)
+
+1.先用一个字典把所有任务数出来，再用一个集合把所有任务类型数出来，用一个字典表示任务处理器，每次一个新任务到达，对应的任务类型的value+n，每一轮对不是零的任务类型-1模拟冷却。尽可能从数好的任务里取除任务处理器里已经冷却完成的任务
+
+2.更新第二版后对于集合做了些调整，逻辑没问题了但是会超市。
+
+3.没办法上解答，思路对的，实现细节繁琐了。[任务调度器](https://leetcode-cn.com/problems/task-scheduler/solution/ren-wu-diao-du-qi-by-leetcode-solution-ur9w/)
+
+### 待续
+
+
+
