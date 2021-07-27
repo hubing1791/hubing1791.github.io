@@ -1,0 +1,14 @@
+---
+title: python的几个问题
+author: not_you
+date: 2021-06-29 22:34:00 +0800
+categories: ["日常学习","python"]
+tags: ["python"]
+---
+
+记录几个链接
+
+[gitlab的ci/cd](https://www.cnblogs.com/cjsblog/p/12256843.html)
+
+[jenkins教程](https://www.jianshu.com/p/5f671aca2b5a)
+

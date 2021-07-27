@@ -107,7 +107,7 @@ tags: [刷题]
 
 
 
-621.任务调度器
+### 621.任务调度器
 
 [题目链接](https://leetcode-cn.com/problems/task-scheduler/)
 
@@ -116,6 +116,20 @@ tags: [刷题]
 2.更新第二版后对于集合做了些调整，逻辑没问题了但是会超市。
 
 3.没办法上解答，思路对的，实现细节繁琐了。[任务调度器](https://leetcode-cn.com/problems/task-scheduler/solution/ren-wu-diao-du-qi-by-leetcode-solution-ur9w/)
+
+
+
+### 8.字符串转换整数
+
+[题目链接](https://leetcode-cn.com/problems/string-to-integer-atoi/)
+
+一个有限状态自动机的题，参考了题解的标准的自动机写法
+
+
+
+### 208.实现前缀树
+
+[题目链接](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
 
 ### 待续
 
