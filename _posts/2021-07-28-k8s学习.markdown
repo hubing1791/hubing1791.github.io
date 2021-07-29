@@ -1,0 +1,46 @@
+---
+title: k8s学习
+author: not_you
+date: 2021-07-28 00:00:00 +0800
+categories: ["系统学习","k8s学习"]
+tags: [k8s,系统学习]
+
+---
+
+### 安装
+
+[学习环境安装教程linux](https://kubernetes.io/zh/docs/tasks/tools/install-kubectl-linux/)
+
+防止这教程啥时候就挂了，还是具体记录下。
+
+``` shell
+# 下载最新版的kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+# 下载校验
+curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+# 校验
+echo "$(<kubectl.sha256) kubectl" | sha256sum --check
+# 安装
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+# 查看版本
+kubectl version --client
+```
+
+**验证kubectl配置**
+
+~/.kube/config存放配置信息
+
+``` shell
+# 通过获取集群状态的方法，检查是否已恰当的配置了 kubectl
+kubectl cluster-info
+```
+
+
+
+
+
+
+
+
+
+### 待续
