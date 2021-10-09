@@ -1,0 +1,43 @@
+---
+title: 2021年第四季度刷题整理
+author: not_you
+date: 2021-06-30 00:00:00 +0800
+categories: ["leetcode"]
+tags: [刷题]
+
+---
+
+
+
+### git链接
+
+[我的leetcode刷题记录](https://github.com/hubing1791/my_leetcode)
+
+### 91.解码方法
+
+[题目链接](https://leetcode-cn.com/problems/decode-ways/)
+
+1.直观的思路，递归加剪枝应该是没有问题的。
+
+
+
+### 116.填充每个节点的下一个右侧节点
+
+[题目链接](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/)
+
+1.上来的直接思路，层序遍历然后一直往右连，加个层级标记，同一级继续右连。 
+
+2.可以逐级建立，利用上级留下的next，就可以实现题目要求的进阶
+
+
+
+### 125.验证回文串
+
+[题目链接](https://leetcode-cn.com/problems/valid-palindrome/)
+
+1.关键是解决如何匹配的问题，一个字符不考虑大小写这一问题，想到的是转为数字，注意，因为大小写字母之间插入了几个字符，因此差值并不是26，差值为32.大写字母范围为65-90，小写字母为97-122，数字1-9对应的字符的值为48-57
+
+### 待续
+
+
+
