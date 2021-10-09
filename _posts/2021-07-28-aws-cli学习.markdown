@@ -1,0 +1,33 @@
+---
+title: k8s学习
+author: not_you
+date: 2021-07-28 00:00:00 +0800
+categories: ["系统学习","aws"]
+tags: [aws,系统学习]
+
+---
+
+### 安装
+
+[官方文档](https://docs.aws.amazon.com/zh_cn/cli/latest/userguide/install-windows.html#msi-on-windows)
+
+**aws配置**
+
+~/.aws/config存放配置信息
+
+**典型的命令**
+
+```shell
+aws s3 --no-verify-ssl --endpoint-url https://xx ls s3://xxx
+# --no-verify-ssl 表示ssl验证可以不过，--endpoinwt-url表示代理网关
+```
+
+
+
+
+
+
+
+
+
+### 待续

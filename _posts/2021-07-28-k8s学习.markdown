@@ -28,11 +28,47 @@ kubectl version --client
 
 **验证kubectl配置**
 
-~/.kube/config存放配置信息
+~/.kube/config存放配置信息，配置信息放在$HOME下
 
 ``` shell
 # 通过获取集群状态的方法，检查是否已恰当的配置了 kubectl
 kubectl cluster-info
+```
+
+**命令尝试**
+
+获取pods的信息
+
+```shell
+kubectl get pod memory-demo --namespace=mem-example
+```
+
+从pods下载或者上传文件
+
+```shell
+kubectl cp --help # 用这个查询信息然后对着用就行
+# 值得注意的是可能会报一个去掉/的问题，不影响命令执行成功
+```
+
+转发本地端口到Pod端口
+
+```shell
+kubectl port-forward es-data-0 -n logging 9999:9200
+# 本地9999端口转到namespace的logging下的es-data-0 pod 的9200端口
+```
+
+
+
+获取全部namespace
+
+```shell
+kubectl get namespace
+```
+
+获取全部pods
+
+```shell
+kubectl get pods --all-namespace=true # 可以简写为-A
 ```
 
 
