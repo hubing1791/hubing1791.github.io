@@ -7,6 +7,10 @@ tags: [k8s,系统学习]
 
 ---
 
+ 实习期间用到了k8s和aws，稍微记录一下
+
+## K8s
+
 ### 安装
 
 [学习环境安装教程linux](https://kubernetes.io/zh/docs/tasks/tools/install-kubectl-linux/)
@@ -69,6 +73,25 @@ kubectl get namespace
 
 ```shell
 kubectl get pods --all-namespace=true # 可以简写为-A
+```
+
+
+
+## aws
+
+### 安装
+
+[官方文档](https://docs.aws.amazon.com/zh_cn/cli/latest/userguide/install-windows.html#msi-on-windows)
+
+**aws配置**
+
+~/.aws/config存放配置信息
+
+**典型的命令**
+
+```shell
+aws s3 --no-verify-ssl --endpoint-url https://xx ls s3://xxx
+# --no-verify-ssl 表示ssl验证可以不过，--endpoinwt-url表示代理网关
 ```
 
 
