@@ -1,5 +1,5 @@
 ---
-title: k8s学习
+title: k8s和aws学习
 author: not_you
 date: 2021-07-28 00:00:00 +0800
 categories: ["系统学习","k8s学习"]
@@ -95,6 +95,8 @@ aws s3 --no-verify-ssl --endpoint-url https://xx ls s3://xxx
 ```
 
 
+
+之后发现基本上所有的问题，直接查官方文档就行了，已经记的就留着了。不记录常规问题了，如果之后有有意思的内容再继续记录
 
 
 
