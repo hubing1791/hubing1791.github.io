@@ -1,5 +1,5 @@
 ---
-title: python的几个问题
+title: 何为ci_cd
 author: not_you
 date: 2021-06-29 22:34:00 +0800
 categories: ["日常学习","日常"]
