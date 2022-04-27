@@ -13,7 +13,7 @@ tags: [刷题]
 
 [我的leetcode刷题记录](https://github.com/hubing1791/my_leetcode)
 
-
+TVT第一季度不知道忙的个啥，写的太少了给我冲
 
 ### 166.分数到小数
 
@@ -50,6 +50,44 @@ tags: [刷题]
 [题目链接](https://leetcode-cn.com/problems/word-ladder/)
 
 1.这题需要多次找到差一个字母的单词，从而得到一个序列。想着是把可以转换的连起来，连完后开始词到结束词可以连通就行。可以转成图联通问题，但是对于怎么转缺乏思路。
+
+
+
+### 398.随机数索引
+
+[题目链接](https://leetcode-cn.com/problems/random-pick-index/)
+
+1.一个直接的思路是，构建数字到位置列表的字典，每次随即返回。
+
+2.题解第一个方法与我的直观思路相同，另一种解法是水塘抽样。参见题解
+
+
+
+### 6.z字变换
+
+[题目链接](https://leetcode-cn.com/problems/zigzag-conversion/)
+
+1.一眼看过去是个规律题，变换的位置是有对应的，当numRows为3时第一行的数对应位置是4n，中间是2n+1，下面是4n+2（从0开始计数）。第一行的位置通项公式为(2\*numRows -2)\*n，其它的具体推算就不写了。可以得知，模(2\*numRows -2)的结果互补的数都在同一行。按这个规律可以分队拼接再组合
+
+2.看了下题解，我和最优解思路一样，不过我的代码简洁些
+
+
+
+### sword-11-旋转数组的最小数字
+
+[题目链接](https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/)
+
+1.和搜索旋转数组很像。二分查找的变式。参见题解
+
+2，在left，right的变化上犯了错。因为整除2的原因，right至少要左移一个，所以right=med没问题。 如果left，right只差1，left可能会不移动，因此left每次要加一。把等于单独讨论，等于意味着，最小值在区间内，而且在最右边的更左一点
+
+### sword-20-表示数值的字符串
+
+[题目链接](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
+
+1.其实就是设计一个有限状态自动机
+
+
 
 
 
