@@ -81,6 +81,8 @@ TVT第一季度不知道忙的个啥，写的太少了给我冲
 
 2，在left，right的变化上犯了错。因为整除2的原因，right至少要左移一个，所以right=med没问题。 如果left，right只差1，left可能会不移动，因此left每次要加一。把等于单独讨论，等于意味着，最小值在区间内，而且在最右边的更左一点
 
+
+
 ### sword-20-表示数值的字符串
 
 [题目链接](https://leetcode-cn.com/problems/biao-shi-shu-zhi-de-zi-fu-chuan-lcof/)
@@ -89,7 +91,118 @@ TVT第一季度不知道忙的个啥，写的太少了给我冲
 
 
 
+### sword-21-调整数组顺序使奇数位于偶数前面
 
+[题目链接](https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof/)
+
+1.双指针
+
+
+
+### sword-22-链表中倒数第K个节点
+
+[题目链接](https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof/)
+
+1.快慢指针
+
+
+
+### sword-31-栈的压入、弹出序列
+
+[题目链接](https://leetcode-cn.com/problems/zhan-de-ya-ru-dan-chu-xu-lie-lcof/)
+
+1.规律是，一个数如果已经出栈，那么它之前的数必须按照相对顺序在它之后出现
+
+2.直接参考了题解，模拟真实的出入栈即可
+
+
+
+### sword-33-二叉搜索树的后序遍历序列
+
+[题目链接](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-hou-xu-bian-li-xu-lie-lcof/)
+
+1.后序遍历的结果是左子树右子树根，根据这个规律，可以划分区间得到结果   
+
+
+
+### sword-34-二叉树中和为某一值的路径
+
+[题目链接](https://leetcode-cn.com/problems/er-cha-shu-zhong-he-wei-mou-yi-zhi-de-lu-jing-lcof/)
+
+1.在本题上吃了大亏
+
+- python传列表是引用，第一遍写没注意。而且返回了冗余的数据，设计失误
+- 没有仔细读题，想当然觉得树上节点都是正数，想以此剪枝，反而做错了
+
+2.还有BFS的方法：建好一个查父节点的字典parent，然后实际上就是一个层序遍历+额外存储节点对应的当前结果值，每次出队列都进行比较。直到找到根节点，再借助parent查询到路径上所有的数并加入结果
+
+
+
+### sword-35-复杂链表的复制
+
+[题目链接](https://leetcode-cn.com/problems/fu-za-lian-biao-de-fu-zhi-lcof/)
+
+1.直观思路，过两遍，第一遍复制节点并生成一个链表，和原链表到目标链表的节点映射。第二遍扫描再修改random指针
+
+2.题解给了两个方案，一个是回溯加hasn，仔细想一下的话会发现和我的方法没有实质的区别。不过回溯写起来短一些。
+
+3。题解的第二个方案比较巧妙，先把复制出来的节点插在原节点后，这样一步走完后，random节点指向的节点的后一个就是复制的节点，。然后一共走三遍即可。
+
+
+
+### sword-38-字符串的排列
+
+[题目链接](https://leetcode-cn.com/problems/zi-fu-chuan-de-pai-lie-lcof/)
+
+1.有直观思路，但我没写了，就是把字符串转列表，全排列再去重。我的习惯写法是传入复制的列表，这样的计算代价过大。
+
+2.官方解第一种回溯。主要是考虑如何在填入数字时不重复。官解先给字符串排序，我直接使用字典解决了
+
+3.官解第二种，利用排列，免去了去重的麻烦。
+
+
+
+### sword-39-数组中出现的最多次数的数
+
+[题目链接](https://leetcode-cn.com/problems/shu-zu-zhong-chu-xian-ci-shu-chao-guo-yi-ban-de-shu-zi-lcof/)
+
+1.因为和主站169题相同，所以就试下写官解里的其他方法了。
+
+
+
+### sword-40-最小的K个数
+
+[题目链接](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/)
+
+1.实际上就是topK问题
+
+
+
+### sword-42-最大子数组和
+
+[题目链接](https://leetcode-cn.com/problems/lian-xu-zi-shu-zu-de-zui-da-he-lcof/)
+
+1.可以用动态规划和分治，动态规划可以优化为常数空间复杂度
+
+
+
+### sword-44-数字序列中第n位的数
+
+[题目链接](https://leetcode-cn.com/problems/shu-zi-xu-lie-zhong-mou-yi-wei-de-shu-zi-lcof/)
+
+1.很明显是个规律题。n位数的个数，为9*10^(n-1),除了一位数特殊外，此外，n位之前的数的个数是10^（n-1）。由此可以大体算出第n位虽在的区间，再进一步找到数字就可以了
+
+2.需要特别注意在代码的第14，15行的问题，判断剩下还有多少个数的时候，位数和个数的对应关系
+
+
+
+sword-45-数字序列中第n位的数
+
+[题目链接](https://leetcode-cn.com/problems/ba-shu-zu-pai-cheng-zui-xiao-de-shu-lcof/)
+
+1.首先，长度相同时字典序较小的字符串一定是倾向于优先排列的。对于长度不同时，一时没想好
+
+2，看了题解，定义排序规则。字符串x和y，加法为拼接。如果x+y<y+x,则定义x<y,即x排在y之前
 
 ### 待续
 

@@ -1,0 +1,50 @@
+---
+title: 堆排序算法实现
+author: not_you
+date: 2022-05-01 00::00 +0800
+categories: ["具体需求"]
+tags: ["杂项","具体需求"]
+---
+
+知识点：堆排序
+
+[代码链接](https://github.com/hubing1791/my_leetcode/tree/master/extra_practice/classical_practice/heap_sort)
+
+之前一直没有手写过堆排序，今天完整了实现了堆排序类。并提供了pop(),push(),sort_all()三个功能
+
+跳过堆排序的概念，考虑类需要实现的方法，如下
+
+​	1）堆的初始化
+
+​	2）弹出堆顶元素
+
+​	3）向堆中添加新元素
+
+​	4）将整个堆排序返回
+
+对于这些功能，需要进行模块的进一步设计。所有功能都离不开一个基本的操作，即节点元素的位置交换，避免冗余，单独实现。1，3都需要对堆进行重整。因此独立实现一个整理堆的函数。由此函数模块划分如下,具体代码点击文章开头链接
+
+```python
+class HeapSort:
+    # 将传入数组整理使得其符合堆
+    def __init__(self, heap_list=None) -> None:
+
+
+    # 需要整体进行处理的情况
+    def reform_heap(self, ):
+
+    # 弹出一个元素后的处理
+    def exchange_element(self, index: int, length: int):
+
+    # 添加一个元素
+    def push(self, new_num: int):
+
+    # 弹出一个元素
+    def pop(self):
+
+    # 完整排序
+    def sort_all(self):
+```
+
+
+

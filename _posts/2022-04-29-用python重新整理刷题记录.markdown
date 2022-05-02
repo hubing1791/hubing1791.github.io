@@ -1,0 +1,78 @@
+---
+title: 用python重新整理刷题记录
+author: not_you
+date: 2022-04-29 00::00 +0800
+categories: ["具体需求"]
+tags: ["杂项","具体需求"]
+---
+
+知识点：正则表达式，文件操作
+
+今天温习算法题的时候，发现自己的git仓库下，每一个题虽说代码写了注释，但是有部分思考内容是整合在一起放博客上的。搞得我想知道自己的一些思考，还得在博客上找到对应的记录。因此决定重新整理下仓库，每个代码目录下都新增一个problem.md用于存放当初记录的思考
+
+手动整理不可行
+
+考虑到：
+
+- 我的仓库j目录绝大部分是按照底层目录为 号码\_难度\_题目名 来组织的 例如：4_difficult_median_of_two_sorted_arrays
+- 博客对应的markdown文件是有对应的结构的
+
+因此，用python写了两个脚本完成了创建文件和拆分md到仓库的对应目录下
+
+代码很简单只是记录下，就当温习文件操作和正则表达式了
+
+创建操作
+
+```python
+for path in paths: # paths是仓库目录
+    path_1_lists = os.listdir(path)
+    for path_1_list in path_1_lists:
+        path_2 = path + '/' + path_1_list
+        path_2_lists = os.listdir(path_2)
+        if "problem.md" not in path_2_lists:
+            f = open(path_2 + '/problem.md', "a+",encoding='utf-8')
+            f.write("### 正在重新整理排版刷题记录，目前这个目录下problem.md还没更新，需要看的话内容在博客，本人git库就有，或者访问www.notyou.top")
+```
+
+拆分操作
+
+```python
+# 寻找题目对应的完整路径
+def find_file(num_str: str):
+    if num_str == '':
+        return ''
+    for path in paths:
+        path_1_list = os.listdir(path)
+        for path_1 in path_1_list:
+            if re.match(num_str, path_1):
+                file_path = path + '/' + path_1 + "/problem.md"
+                return file_path
+    return ''
+
+
+# 切分并写入
+def split_md():
+    for md_path in md_paths: # md_paths是整合的md的地址
+        need_write = []
+        md_article = open(md_path, 'r', encoding='utf-8')
+        for line in md_article.readlines():
+            # print(line)
+            need_write.append(line)
+            # 两个三级标题之间就对应一个题解
+            if line[:3] == '###':
+                str_in_num = need_write[0]
+                num_str = re.findall(r'(\d+)', str_in_num)
+
+                # 三级标题后未必都是题目，还是要进一步判断
+                if num_str:
+                    num_str = num_str[0]
+                    full_path = find_file(num_str)
+                    if full_path != '':
+                        write_handle = open(full_path, 'w', encoding='utf-8')
+                        for need_line in need_write[:-1]:
+                            write_handle.write(need_line)
+                        write_handle.close()
+                # 重置下需要写入的内容
+                need_write = [line]
+```
+
