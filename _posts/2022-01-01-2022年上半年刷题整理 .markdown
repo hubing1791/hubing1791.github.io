@@ -210,7 +210,239 @@ TVT第一季度不知道忙的个啥，写的太少了给我冲
 
 [题目链接](https://leetcode-cn.com/problems/ba-shu-zi-fan-yi-cheng-zi-fu-chuan-lcof/)
 
-1.
+1.直观的读完题，递归一下即可。因为没要求返回翻译结果，都不用回溯
+
+2.看了题解，可以以动态规划的视角去做。转化为青蛙跳台阶，只不过两步的时候可能没法跳。也是先转字符串再比较。一位数不用比，两位数才需要比
+
+
+
+### sword-47-礼物的最大价值
+
+[题目链接](https://leetcode-cn.com/problems/li-wu-de-zui-da-jie-zhi-lcof/)
+
+1.看到题目直接想到了利用回溯遍历全部路径即可
+
+2.回溯复杂度太大，得用动态规划==。有思路之后挺简单的
+
+
+
+### sword-48-最长不含重复字符的子字符串
+
+[题目链接](https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chuan-lcof/)
+
+1.集合加双指针
+
+
+
+### sword-49-丑数
+
+[题目链接](https://leetcode-cn.com/problems/chou-shu-lcof/)
+
+1.直接看了题解，分为最小堆发和动态规划法
+
+
+
+### sword-50-第一个只出现一次的字符
+
+[题目链接](https://leetcode-cn.com/problems/di-yi-ge-zhi-chu-xian-yi-ci-de-zi-fu-lcof//)
+
+1.用hash两遍遍历可解。用字典一遍遍历也可，注意，python3.6后，字典默认有序。
+
+
+
+### sword-52-两个链表的第一个公共共节点
+
+[题目链接](https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/)
+
+1.快慢指针
+
+
+
+### sword-53-1在排序数组中查找数字 I
+
+[题目链接](https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/)
+
+1.过于简单
+
+
+
+### sword-53-2-n-1 中缺失的数字
+
+[题目链接](https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/)
+
+1.直接写非常简单。但是可以优化
+
+2.优化解法1：因为是排序数组，所以可以使用二分法
+
+3..优化解法2：因为是排序的，所以下标应该等于值。第一个不符合的即可返回
+
+4.这题其实有小细节的问题，对于特殊输入[0]的处理
+
+
+
+### sword-54-二叉搜索树的第k大节点
+
+[题目链接](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-di-kda-jie-dian-lcof/)
+
+1.利用二叉树的中序遍历，然后建立一个大小为k的数组，遍历时，没装满时添加，装满后一边加一边删。最后数组的第一个就是需要的结果
+
+
+
+### sword-55-二叉的最大深度
+
+[题目链接](https://leetcode-cn.com/problems/er-cha-shu-de-shen-du-lcof/)
+
+1.递归或者迭代都行，迭代可以借助层序遍历，最多的层数就是深度
+
+
+
+### sword-55-2-二叉的最大深度
+
+[题目链接](https://leetcode-cn.com/problems/ping-heng-er-cha-shu-lcof/)
+
+1.DFS莽起来
+
+2.发现自己实际上写的就是自下向上递归，最优解
+
+
+
+### sword-56-1-数组中出现一次的两个数
+
+[题目链接](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-lcof/)
+
+1.题目要求常数空间复杂度，n时间复杂度。没想出来，但是肯定和异或有关
+
+2.上题解
+
+
+
+### sword-56-2-数组中出现一次的一个数（其它三次）
+
+[题目链接](https://leetcode-cn.com/problems/shu-zu-zhong-shu-zi-chu-xian-de-ci-shu-ii-lcof/)
+
+1.暴力扫肯定是可以的，用字典扫一遍即可
+
+2.更优方法，将所有数的二进制每位都加起来模3，得到的结果就是只出现一次的。而最终模3和一开始模没区别，在计算过程中就可以做了。这个方法很有意思！！
+
+
+
+### sword-57-两数之和
+
+[题目链接](https://leetcode-cn.com/problems/he-wei-sde-liang-ge-shu-zi-lcof/)
+
+1.经典题了，leetcode主题库也有。一遍扫描即可
+
+2，因为是排序数组，可以双指针
+
+
+
+### sword-57-2-和为s的连续正序列
+
+[题目链接](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
+
+1.这道题我首先考虑了可能的序列范围，首先，假设为n个，假设里面最小的数为a，那么总和就是 a*n + (n-1)n/2，n从2开始增大，计算这个式子的解，a最小为1，会知道n的范围。
+
+2.n的范围没必要精确计算，当a取1时。n方加n为2倍target，直接开方得范围即可
+
+3.没看题解了，我的方法优于最优解。
+
+
+
+### sword-58-1-翻转单词顺序
+
+[题目链接](https://leetcode-cn.com/problems/fan-zhuan-dan-ci-shun-xu-lcof/)
+
+1.so easy
+
+
+
+### sword-58-2-翻转单词顺序
+
+[题目链接](https://leetcode-cn.com/problems/zuo-xuan-zhuan-zi-fu-chuan-lcof/)
+
+1.so easy
+
+
+
+### sword-59-2-最大队列
+
+[题目链接](https://leetcode-cn.com/problems/dui-lie-de-zui-da-zhi-lcof/)
+
+1.空间换时间得思路，问题在于，队列是先进先出，因此不能直接借鉴最小栈。
+
+2。直接看题解吧，仔细思考题解二也不完全符合要求。但是思路很有意思。借助一个始终递减的队列来实现
+
+
+
+### sword-60-n个骰子点数和概率
+
+[题目链接](https://leetcode-cn.com/problems/nge-tou-zi-de-dian-shu-lcof/)
+
+1.一开始想用公式，发现公式很复杂，也很难转化为代码
+
+2.看了题解，动态规划
+
+
+
+### sword-63-股票的最大利润
+
+[题目链接](https://leetcode-cn.com/problems/gu-piao-de-zui-da-li-run-lcof/)
+
+1.so easy
+
+
+
+### sword-64-求1+2+...+n
+
+[题目链接](https://leetcode-cn.com/problems/qiu-12n-lcof/)
+
+1.题目的限制条件头疼了。看题解吧
+
+2.官方题解2得手动快速乘没看了
+
+
+
+### sword-62-圈圈最后剩下得数字
+
+[题目链接](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
+
+1.没看出规律，看了题解发现不是规律题，有一定技巧。约瑟夫环问题
+
+
+
+### sword-65-不用加减乘除做加法
+
+[题目链接](https://leetcode-cn.com/problems/bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof/)
+
+1.肯定是做位运算了。对于某个二进制位，结果为异或值，进位为与值。
+
+2，涉及补码，个人觉得有些难的
+
+
+
+### sword-66-构建乘积数组
+
+[题目链接](https://leetcode-cn.com/problems/gou-jian-cheng-ji-shu-zu-lcof/)
+
+1.因为不能使用除法的要求，不能使用先计算乘积再除以对应的数的办法了。
+
+2.看了题解，从头遍历，相乘一次。再回头遍历，相乘一次，只要合理错开即可。见代码
+
+
+
+### sword-67-把字符串转换成整数
+
+[题目链接](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/)
+
+1.常规转换题，看了[题解](https://leetcode-cn.com/problems/ba-zi-fu-chuan-zhuan-huan-cheng-zheng-shu-lcof/solution/mian-shi-ti-67-ba-zi-fu-chuan-zhuan-huan-cheng-z-4/)优化了我的写法
+
+
+
+### sword-68-1-二叉树最近公共祖先
+
+[题目链接](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
+
+1.之前做过二叉树的最近公共祖先，考虑这道题，二叉搜索树的数据是有特征的。两个值的公共祖先的值一定在两者之间。可以作为一个剪枝的条件
 
 ### 待续
 
