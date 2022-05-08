@@ -438,11 +438,67 @@ TVT第一季度不知道忙的个啥，写的太少了给我冲
 
 
 
-### sword-68-1-二叉树最近公共祖先
+### sword-68-1-二叉搜索树最近公共祖先
 
 [题目链接](https://leetcode-cn.com/problems/er-cha-sou-suo-shu-de-zui-jin-gong-gong-zu-xian-lcof/)
 
 1.之前做过二叉树的最近公共祖先，考虑这道题，二叉搜索树的数据是有特征的。两个值的公共祖先的值一定在两者之间。可以作为一个剪枝的条件
+
+2.看了题解的第二种，值得学习下。
+
+
+
+### sword-68-2-二叉树最近公共祖先
+
+[题目链接](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+
+1.之前做过，用的不同方法。写一下hash表法
+
+
+
+### cracking-01-02-判断是否互为字符重排
+
+[题目链接](https://leetcode-cn.com/problems/check-permutation-lcci/)
+
+1.最简单暴力的办法是把两个字符串都重排一下，比对是否相等
+
+2.还可以利用hash表
+
+
+
+### cracking-01-03-URL化
+
+[题目链接](https://leetcode-cn.com/problems/string-to-url-lcci/)
+
+1.不用现成函数，使用双指针。有更多效果更好做法，比如直接拼字符串，再范围内哦那个replace，感觉不符合题意没用
+
+
+
+### cracking-01-04-回文排列
+
+[题目链接](https://leetcode-cn.com/problems/palindrome-permutation-lcci/)
+
+1.是某个回文串的条件是，统计全部字符，最多有一个奇数出现，其它都是偶数个
+
+2.看到了评论区提出的新奇解法，即用二进制位表示是否出现。
+
+3.result & (result - 1) == 0的结果可以表示result里1的个数是否只有一个，只有一个因为借位的关系，1会错开。2个及以上用不完，就不等于0了
+
+
+
+### cracking-01-05-一次编辑
+
+[题目链接](https://leetcode-cn.com/problems/one-away-lcci/)
+
+1.字符个数相差2个及以上就不行了，相差一个就得保证短的那个除了缺一个字符外其它和第一个完全相同，长度相同也是只差一个，遍历检查即可
+
+
+
+### cracking-01-06-字符串压缩
+
+[题目链接](https://leetcode-cn.com/problems/compress-string-lcci/)
+
+1.简单，冲
 
 ### 待续
 
