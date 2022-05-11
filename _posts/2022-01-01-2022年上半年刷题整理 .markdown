@@ -500,6 +500,32 @@ TVT第一季度不知道忙的个啥，写的太少了给我冲
 
 1.简单，冲
 
+
+
+### cracking-01-07-旋转矩阵
+
+[题目链接](https://leetcode-cn.com/problems/rotate-matrix-lcci/)
+
+1.这题显然可以更具位置变化来进行迭代，计算一下位置对应的方式即可。(x,y)->(y,n-1-x),这个是旋转公式
+
+
+
+### 704.二分查找
+
+[题目链接](https://leetcode-cn.com/problems/binary-search/)
+
+1.简单，冲了
+
+
+
+### 704.第一个错误的版本
+
+[题目链接](https://leetcode-cn.com/problems/first-bad-version/)
+
+1.其实也是二分查找的变式，但是保持谨慎的点在于要找到真假的分界线。
+
+2.参考了题解，在处理分界上没写对.因为不可能在左半部分，只有左半部分需要额外加一
+
 ### 待续
 
 
