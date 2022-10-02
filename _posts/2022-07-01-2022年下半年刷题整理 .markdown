@@ -1,0 +1,177 @@
+---
+title: 2022年下半年刷题整理
+author: not_you
+date: 2022-07-01 00:00:00 +0800
+categories: ["leetcode"]
+tags: [刷题]
+
+---
+
+
+
+### git链接
+
+[我的leetcode刷题记录](https://github.com/hubing1791/my_leetcode)
+
+[我的leetcode刷题记录golang](https://github.com/hubing1791/leetcode_golang)
+
+python和go可能会混着写，估计go会用的越来越多了
+
+
+
+### 171.excel表序号
+
+[题目链接](https://leetcode.cn/problems/excel-sheet-column-number/)
+
+1.主要就是注意，直接使用range对字符串遍历，和使用下标遍历，一次取的长度是不同的
+
+
+
+### 172.阶乘后的零
+
+[题目链接](https://leetcode.cn/problems/factorial-trailing-zeroes/)
+
+1.典型的规律题，每一对2和5会产生一个0，只要算出有多少对2和5即可。但是尬算肯定不是最优解。且由于2的倍数出现一定多于5的倍数，因此，计算出5的个数即可。
+
+2.假设这个数为n，则n/5为5的倍数的个数，但是考虑到25这样的数的特殊性，多次除5，累加即可。
+
+
+
+### 179.最大数
+
+[题目链接](https://leetcode.cn/problems/largest-number/)
+
+1.按字典序更靠前的数字放在更前面，规律就是这样。实现一个字典序比较器即可。
+
+2.想的不对，是字符串a+b和b+a比较作为排序的要点
+
+
+
+### 189.转轮数组
+
+[题目链接](https://leetcode.cn/problems/rotate-array/)
+
+1.这题咋一看巨简单，切片重拼就行。第二种，双指针加个tmp变量。第三种暂时没想到
+
+2.经过实际的做题尝试，第二种方法我想简单了。具体来说就是，在数组长度和k存在公约数的情况下，看起来数组就像分为了几个子小组，小组内进行了互换。用初始思路只能置换其中一个小组
+
+3.第三种方法为3次翻转
+
+
+
+### 204.计数质数
+
+[题目链接](https://leetcode.cn/problems/count-primes/)
+
+1.埃式筛法，具体见代码
+
+
+
+### crack.01.08.零矩阵
+
+[题目链接](https://leetcode.cn/problems/zero-matrix-lcci/)
+
+1.其实做过，相当于go语言再做一遍，提高熟练度
+
+
+
+### crack.01.09.字符串轮转
+
+[题目链接](https://leetcode.cn/problems/string-rotation-lcci/)
+
+1.暴力异常简单。不暴力就借助KMP算法，之前手写过KMP，忘得差不多了已经，没必要在这个上死折腾hh
+
+2.go的continue关键字挺有意思的
+
+
+
+### crack.02.01.移除重复节点
+
+[题目链接](https://leetcode.cn/problems/remove-duplicate-node-lcci/)
+
+1.暴力解法，不增加额外空间的，有每遇到一个数就遍历一次进行断链的。也可以利用set统计出现的全部元素重建链表。进阶要求是不得使用临时缓冲区，那么方法一就可以实现
+
+2.官方解用原链表短链生成，有点意思的。
+
+
+
+
+
+### crack.02.02.返回倒数第K个节点
+
+[题目链接](https://leetcode.cn/problems/kth-node-from-end-of-list-lcci/)
+
+
+
+### crack.02.03.删除中间节点
+
+[题目链接](https://leetcode.cn/problems/delete-middle-node-lcci/)
+
+这题因为不知道前向节点，没法使用断开的方式。一开始想的是依次把值往前传递，最后一个断开。看了个题解，直接把当前节点的值获取为下一个，然后把下一个断开就行了。
+
+
+
+### crack.02.04 分割链表
+
+[题目链接](https://leetcode.cn/problems/partition-list-lcci/)
+
+1.一开始想到了一个类似于位置交换的算法，题目也说了不需要保留位置。但是貌似需要一个特殊的递归，没想好怎么实现。
+
+2.看了眼答案，麻了，原来就是拆分重组，毫无技术含量
+
+3.初始犯了些蠢，比如newhead.next
+
+
+
+### crack.02.05 链表求和
+
+[题目链接](https://leetcode.cn/problems/sum-lists-lcci/solution/)
+
+1.很简单的遍历，没有节点了就继续用零顶替
+
+2.尝试尽可能复用原本的节点,对于进位利用整数计算保留位数来实现
+
+
+
+### crack.02.06回文链表
+
+[题目链接](https://leetcode.cn/problems/palindrome-linked-list-lcci/)
+
+1.首先想到的是递归，很久没写了有点生疏，看了波答案（干想毕竟也不会有啥收益）
+
+2.答案还有个符合要求的，先反转后半段再快慢指针比较再转回去
+
+
+
+### crack.02.07 回文链表
+
+[题目链接](https://leetcode.cn/problems/intersection-of-two-linked-lists-lcci/)
+
+1.经典题了，双指针交换，有相等的会相遇
+
+
+
+### crack.02.08 环路检测
+
+[题目链接](https://leetcode.cn/problems/linked-list-cycle-lcci/)
+
+1.如果不要求额外空间使用，倒是非常的简单，使用一个hashmap即可
+
+2.使用快慢指针可以实现不使用额外空间，不写了就，曾经写过python版的。
+
+
+
+### crack.03.01 三合一
+
+[题目链接](https://leetcode.cn/problems/three-in-one-lcci/)
+
+1.一个数组实现三个栈，其实就是长数组加三个指针，注意指针的范围即可。
+
+
+
+### crack.03.03 堆盘子
+
+[题目链接](https://leetcode.cn/problems/stack-of-plates-lcci/)
+
+1.
+

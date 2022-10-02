@@ -29,8 +29,8 @@ url: 'https://hubing1791.github.io'
 github:
   username: hubing1791             # change to your github username
 
-twitter:
-  username: timenull1            # change to your twitter username
+#twitter:
+#  username: timenull1            # change to your twitter username
 
 social:
   # Change to your full name.
@@ -40,7 +40,7 @@ social:
   links:
     # The first element serves as the copyright owner's link
     - https://twitter.com/timenull1      # change to your twitter homepage
-    - https://github.com/hubing1791       # change to your github homepage
+    # - https://github.com/hubing1791       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username

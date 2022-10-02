@@ -24,3 +24,19 @@ toc: false
 （3）网页加载极慢，一开始在看是不是没缓存和Gzip的问题，实际上是css样式导入了外网内容，导致极慢，全部下载下来本地布置即可
 
 （4）配置文件里的url前面一定得有http或者https，否则生成的路径有问题
+
+
+
+#### jekyll
+
+[如何在windows下安装jekyll](https://jekyllrb.com/docs/installation/windows/)
+
+虽然理论上按照上面的办法安装jekyll就可以，实际不行，利用下面的办法，下载到本地重新安装了一个gem才可以用命令安装jekyll。
+
+```shell
+gem install tzinfo --version '1.2' //gem 用这种方式来指定安装包版本
+```
+
+
+
+[gems安装](https://rubygems.org/pages/download)

@@ -1,7 +1,7 @@
 ---
 title: go语言学习
 author: not_you
-date: 2021-07-20 00:00:00 +0800
+date: 2021-07-20 00:00:01 +0800
 categories: ["系统学习","go语言学习"]
 tags: [go,系统学习]
 
@@ -19,48 +19,314 @@ tags: [go,系统学习]
 
 学习过程参考了《go语言编程》[图书的豆瓣链接](https://book.douban.com/subject/11577300/)
 
-### 语言特性(挑其中有意思的记录)：
+### 第四章 并发编程
 
-函数多返回值。在静态语言中首先给出了多值返回功能
-defer，panic，recover用于标准错误处理
-匿名函数和闭包
-非侵入式接口
-goroutine进行并发编程，用channel实现了csp模型
+#### 4.1并发基础
 
-### 第一章
-1.不得包含源代码中没有用到的包
-2.匿名变量，可以通过_,_,nickName :=GetName()的形式，只获取函数多个返回值中的一个
-3.go语言常量是无类型的，它只要在相应类型的值域范围，就可以作为该类型的常量.
+就目前而言，并发包含几种主流的实现模型：多进程；多线程；基于回调的非阻塞/异步IO；协程。
 
-### 第二章
-1.bool变量如果不赋值，默认为false
-2.const()中的赋值，如果某一行之后不写，默认和前面赋一样的值
-3.Go语言要求public的变量必须以 大写字母开头，private变量则以小写字母开头
+#### 4.3 goroutine
 
-4.go直接用:=赋值时会有一个默认的类型，而直接指定类型的值即便看起来与该值一样，还是无法相互赋值。例如
+在一个函数调用前加上go关键字，这次调用就会在一个新的goroutine中并发执行。当被调用
+的函数返回时，这个goroutine也自动结束了。需要注意的是，如果这个函数有返回值，那么这个
+返回值会被丢弃。
 
-![值相同类型冲突]({{site.url}}/assets/img/2021_07_21_forgo/类型冲突.png)
+#### 4.4并发通信
 
-5.与c语言去别的是取反是^
-6.浮点数比较推荐引入math包，自定义精度比较，书有点老了，现在用的函数应该是Dim()
-7.字符串初始化后不可变，使用下标取用直接赋值给变量，是uint8，是对应的ascii码，不会直接以字符形式显示。与python不同，go不可以使用负值下标取用倒数的某个字符。但是可以使用m:n取某个范围的字符串。go也有内置的len()
-8.go语言可以以字符数组或者unicode的方式遍历字符串
-9.在Go语言中数组是一个值类型（value type）。所有的值类型变量在赋值和作为参数传递时都将产生一次复制动作。如果将数组作为函数的参数类型，则在函数调用时该参数将发生数据复制。因此，在函数体中无法修改传入的数组的内容，因为函数内操作的只是所传入数组的一个副本。如果想修改传入数组，则使用数组切片。
-10.make()可用于创建数组切片，数组切片可以有比元素个数多的存储空间
-11.map使用make创建，可以在创建是指定存储能力。map查找形如value, ok := myMap["1234"]
-12.函数的return不能被包含在if ...else...里。
-13.switch case可以没有条件表达式，此时和if ...else...等价
-14.go可以使用goto
-15.小写字母开头的函数只在本包内可见，大写字母开头的函数才能被其他包使用。
-16.interface{}传递任意类型数据
-17.**闭包没仔细看，有点难**
-18.defer用于解决句柄关闭的问题
-19.**panic()和recover()没仔细看**
+Go语言提供的是另一种通信模型，即以消息机制而非共享内存作为通信方式。
 
-第三章
-1.go可以给任意类型添加方法
-2.go的类型和c语言类似，基于值传递，其中数组切片，map，channel和接口使用类似于引用类型
-3.以NewXXX的形式初始化
-4.匿名组合有点难，看的不够细
-5.接口A的方法列表是接口B的方法列表的子集，那么接口B可以赋值给接口A
-6.气死我了，94页代码有错，搞得我一直纠结自己，我\*\*\*\*
+#### 4.5 channel
+
+channel是类型相关的。也就是说，一个channel只能传递一种类型的值，这个类型需要在声
+明channel时指定。如果对Unix管道有所了解的话，就不难理解channel，可以将其认为是一种类
+型安全的管道。
+
+以下这段代码可以实现类似锁的效果，但是这段代码有问题，打印不出任何数据，除非交换Count()数据的位置
+
+```golang
+package main
+import "fmt"
+func Count(ch chan int) {
+	ch <- 1
+	fmt.Println("Counting") //
+}
+func main() {
+	chs := make([]chan int， 10)
+	for i := 0; i < 10; i++ {
+		chs[i] = make(chan int)
+		go Count(chs[i])
+	}
+	for _, ch := range(chs) {
+		<-ch
+	}
+}
+```
+
+##### 4.5.1 基本语法
+
+与一般的变量声明不同的地方仅仅是在类型之前加了chan关键字。ElementType指定这个
+channel所能传递的元素类型。
+
+```golang
+var chanName chan ElementType
+```
+
+在channel的用法中，最常见的包括写入和读出。将一个数据写入（发送）至channel的语法
+很直观，如下：
+
+ ```golang
+ ch <- value
+
+ ```
+
+向channel写入数据通常会导致程序阻塞，直到有其他goroutine从这个channel中读取数据。从
+channel中读取数据的语法是
+
+```glang
+value := <-ch
+```
+
+如果channel之前没有写入数据，那么从channel中读取数据也会导致程序阻塞，直到channel
+中被写入数据为止。
+
+##### 4.5.2 select
+
+select的用法与switch语言非常类似，由select开始一个新的选择块，每个选择条件由
+case语句来描述。与switch语句可以选择任何可使用相等比较的条件相比，select有比较多的
+限制，其中最大的一条限制就是每个case语句里必须是一个IO操作，大致的结构如下：
+
+```golang
+select {
+	case <-chan1:
+	// 如果chan1成功读到数据，则进行该case处理语句
+	case chan2 <- 1:
+	// 如果成功向chan2写入数据，则进行该case处理语句
+	default:
+	// 如果上面都没有成功，则进入default处理流程
+}
+```
+
+##### 4.5.3 缓冲机制
+
+```golang
+c := make(chan int, 1024)
+```
+
+调用make()时将缓冲区大小作为第二个参数传入即可，比如上面这个例子就创建了一个大小
+为1024的int类型channel，即使没有读取方，写入方也可以一直往channel里写入，在缓冲区被
+填完之前都不会阻塞。
+
+从带缓冲的channel中读取数据可以使用与常规非缓冲channel完全一致的方法，但我们也可
+以使用range关键来实现更为简便的循环读取：
+
+```golang
+for i := range c {
+	fmt.Println("Received:", i)
+}
+```
+
+##### 4.5.4  超时机制
+
+Go语言没有提供直接的超时处理机制，但我们可以利用select机制。虽然select机制不是
+专为超时而设计的，却能很方便地解决超时问题。因为select的特点是只要其中一个case已经
+完成，程序就会继续往下执行，而不会考虑其他case的情况。
+
+```golang
+// 首先，我们实现并执行一个匿名的超时等待函数
+timeout := make(chan bool, 1)
+go func() {
+	time.Sleep(1e9) // 等待1秒钟
+	timeout <- true
+}()
+// 然后我们把timeout这个channel利用起来
+select {
+	case <-ch:
+	// 从ch中读取到数据
+	case <-timeout:
+	// 一直没有从ch中读取到数据，但从timeout中读取到了数据
+}
+```
+
+##### 4.5.5 channel的传递
+
+在Go语言中channel本身也是一个原生类型，与map之类的类型地位一样，因
+此channel本身在定义后也可以通过channel来传递。
+
+```golang
+type PipeData struct {
+	value int
+	handler func(int) int
+	next chan int
+}
+
+func handle(queue chan *PipeData) {
+	for data := range queue {
+	data.next <- data.handler(data.value)
+	}
+}
+```
+
+##### 4.5.6单向channel
+
+```golang
+var ch1 chan int // ch1是一个正常的channel，不是单向的
+var ch2 chan<- float64// ch2是单向channel，只用于写float64数据
+var ch3 <-chan int // ch3是单向channel，只用于读取int数据
+```
+
+但是只能读的channel则无法写入数据而为空无意义，只能写也一样。因此需要进行channel的初始化。通过在单向channel和双向channel之间进行转换。
+
+```golang
+ch4 := make(chan int)
+ch5 := <-chan int(ch4) // ch5就是一个单向的读取channel
+ch6 := chan<- int(ch4) // ch6 是一个单向的写入channel
+```
+
+##### 4.5.7关闭channel
+
+直接使用close(ch)即可。
+
+可以在读取的时候使用多重返回值的方式判断channel是否关系
+
+```golang
+x, ok := <-ch
+```
+
+#### 4.6 多核并行化
+
+在Go语言升级到默认支持多CPU的某个版本之前，我们可以先通过设置环境变量
+GOMAXPROCS的值来控制使用多少个CPU核心。具体操作方法是通过直接设置环境变量
+GOMAXPROCS的值，或者在代码中启动goroutine之前先调用以下这个语句以设置使用16个CPU
+核心：
+
+```golang
+runtime.GOMAXPROCS(16)
+```
+
+#### 4.7 出让时间片
+
+可以在每个goroutine中控制何时主动出让时间片给其他goroutine，这可以使用runtime
+包中的Gosched()函数实现。
+
+#### 4.8 同步
+
+##### 4.8.1 同步锁
+
+Go语言包中的sync包提供了两种锁类型：sync.Mutex和sync.RWMutex。
+
+对于这两种锁类型，任何一个Lock()或RLock()均需要保证对应有Unlock()或RUnlock()
+调用与之对应，否则可能导致等待该锁的所有goroutine处于饥饿状态，甚至可能导致死锁。锁的
+典型使用模式如下：
+
+```golang
+var l sync.Mutex
+func foo() {
+	l.Lock()
+	defer l.Unlock()
+	//...
+}
+```
+
+##### 4.8.2 全局唯一性操作
+
+对于从全局的角度只需要运行一次的代码，比如全局初始化操作，Go语言提供了一个Once
+类型来保证全局的唯一性操作，具体代码如下：
+
+```golang
+var a string
+var once sync.Once
+func setup() {
+	a = "hello, world"
+}
+func doprint() {
+	once.Do(setup)
+	print(a)
+}
+func twoprint() {
+	go doprint()
+    go doprint() //只会调用setup()一次
+}
+```
+
+为了更好地控制并行中的原子性操作，sync包中还包含一个atomic子包，它提供了对于一
+些基础数据类型的原子操作函数，比如下面这个函数：
+
+```golang
+func CompareAndSwapUint64(val *uint64, old, new uint64) (swapped bool)
+```
+
+就提供了比较和交换两个uint64类型数据的操作。这让开发者无需再为这样的操作专门添加
+Lock操作。
+
+**105页示例可以看一下，暂时没看完。**
+
+
+
+### 第五章 网络编程
+
+Go语言标准库里提供的net包，支持基于IP层、TCP/UDP层及更高层面（如HTTP、FTP、SMTP）的网络操作，其中用于IP层的称为RawSocket。
+
+#### 5.1 Socket编程
+
+Go语言标准库对此过程进行了抽象和封装。无论我们期望使用什么协议建立什么形式的连
+接，都只需要调用net.Dial()即可。
+
+##### 5.1.1 Dial()函数
+
+Dial()函数的原型，以及几个具体的的连接方式
+
+```golang
+func Dial(net, addr string) (Conn, error)
+conn, err := net.Dial("tcp", "192.168.0.10:2100") //TCP链接
+conn, err := net.Dial("udp", "192.168.0.12:975")  // UDP链接
+conn, err := net.Dial("ip4:icmp", "www.baidu.com")//ICMP链接(使用协议名称)
+conn, err := net.Dial("ip4:1", "10.0.0.3")		  //ICMP链接（使用协议号）
+```
+
+协议编号的含义链接：[这是链接](http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xml)
+
+目前，Dial()函数支持如下几种网络协议："tcp"、"tcp4"（仅限IPv4）、"tcp6"（仅限
+IPv6）、"udp"、"udp4"（仅限IPv4）、"udp6"（仅限IPv6）、"ip"、"ip4"（仅限IPv4）和"ip6"
+（仅限IPv6）。
+
+##### 5.1.2 ICMP示例程序阅读  5.1.3 TCP示例程序
+
+[代码链接](https://github.com/hubing1791/leetcode_golang/tree/master/extra_practice/go_study/part5_net)
+
+##### 5.1.4 更丰富的网络通信
+
+dial()其实是对更细致的函数的封装，包括如下这些。
+
+```go
+func DialTCP(net string, laddr, raddr *TCPAddr) (c *TCPConn, err error)
+func DialUDP(net string, laddr, raddr *UDPAddr) (c *UDPConn, err error)
+func DialIP(netProto string, laddr, raddr *IPAddr) (*IPConn, error)
+func DialUnix(net string, laddr, raddr *UnixAddr) (c *UnixConn, err error)
+net.ResolveTCPAddr() // 用于解析地址和端口号
+net.ParseIP()		//用于验证ip地址的有效性
+//创建子网掩码的代码如下：
+func IPv4Mask(a, b, c, d byte) IPMask
+//获取默认子网掩码的代码如下：
+func (ip IP) DefaultMask() IPMask
+//根据域名查找IP的代码如下：
+func ResolveIPAddr(net, addr string) (*IPAddr, error)
+func LookupHost(name string) (cname string, addrs []string, err error)；
+```
+
+#### 5.2 HTTP编程
+
+##### 5.2.1 HTTP客户端
+
+net/http包的Client类型提供了如下几个方法，让我们可以用最简洁的方式实现 HTTP
+请求：
+
+```
+func (c *Client) Get(url string) (r *Response, err error)
+func (c *Client) Post(url string, bodyType string, body io.Reader) (r *Response, err
+error)
+func (c *Client) PostForm(url string, data url.Values) (r *Response, err error)
+func (c *Client) Head(url string) (r *Response, err error)
+func (c *Client) Do(req *Request) (resp *Response, err error)
+```
+
+141页

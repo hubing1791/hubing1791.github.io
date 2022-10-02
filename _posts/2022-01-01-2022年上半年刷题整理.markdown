@@ -1,5 +1,5 @@
 ---
-title: 2022年第一季度刷题整理
+title: 2022年上半年度刷题整理
 author: not_you
 date: 2022-01-01 00:00:00 +0800
 categories: ["leetcode"]

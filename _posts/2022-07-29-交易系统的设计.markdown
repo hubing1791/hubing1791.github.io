@@ -1,0 +1,67 @@
+---
+title: 交易系统设计
+author: not_you
+date: 2022-07-25 22:34:00 +0800
+categories: ["日常学习","量化"]
+tags: ["量化","数据密集系统设计"]
+---
+
+因为一些实际的需要，读了下HFT system（高频交易系统）的相关内容，记录一下。回想自己最初的设计存在一些问题。记录下思考过程，需要的基础知识是order book是什么，交易所在干什么。因为这类知识我是通过请教他人得知，我就没法给出方便的链接了。
+
+#### 关于交易系统构建的小问题
+
+**参考文章**
+
+[building-a-trading-system-general-considerations](building-a-trading-system-general-considerations)
+
+
+
+#### 如何构建ORDER BOOK
+
+最初我在思考构建order book的时候，只考虑了两点
+
+1.结构上还原order book（虽然是废话），order book一眼看上去，就像是个天然的数组，这样的思考惯性实在是太强烈了。以至于我设计时，使用了大概像是多维数组的形式去做
+
+2.访问加速，但是只考虑了最初级的。即我怎么在茫茫多的order book列表里找到一个stock的order book呢？很简单，一个hashmap解决。
+
+考虑了上面两点后，我就直接进行了实现。那么，先直接关注下我这样实现的问题。我实现的相当于是一个orderbook的数组，单个order book包含bid数组和ask数组。一个现实问题是，go语言（用go实现的，但是别的语言也一样有类似的问题的），对于bid和ask的更新，在底层是要进行重新分配空间和移动的，可能在我自己拿一点点数据测试时没有关系，但是对于真实的线上系统来说，必然是有问题的。
+
+思考一下该文章给出的设计
+
+```shell
+Order
+  int idNumber;
+  bool buyOrSell;
+  int shares;
+  int limit;
+  int entryTime;
+  int eventTime;
+  Order *nextOrder;
+  Order *prevOrder;
+  Limit *parentLimit;
+
+Limit  // representing a single limit price
+  int limitPrice;
+  int size;
+  int totalVolume;
+  Limit *parent;
+  Limit *leftChild;
+  Limit *rightChild;
+  Order *headOrder;
+  Order *tailOrder;
+
+Book
+  Limit *buyTree;
+  Limit *sellTree;
+  Limit *lowestSell;
+  Limit *highestBuy;
+```
+
+如上所示，order制作为一个双向链表，并且事实上是一个二叉排序树的节点的附属。特殊之处是提供了反指向叶子的指针。每一个limit，作为一个排序二叉树的节点存在。book的前两个指针，是树的入口，后两个其实就是指向那个节点，并且 parent指针用于更新lowestSell或者highestBuy保持方便。
+
+作者也提到了order可以用数组，但是对于删除/执行操作时间复杂度提升，具体情况具体考虑。比之他的思考，我的主要问题是没有考虑搜索某个价格这种api的代价。此外就是，将orderbook数组连在一起，严格来说物理空间也在一起了，不合适，用一个hashmap将多个orderbook逻辑上放在一起才更合理些。
+
+**参考文章**
+
+[how-to-build-a-fast-limit-order-book](https://web.archive.org/web/20110219163448/http://howtohft.wordpress.com/2011/02/15/how-to-build-a-fast-limit-order-book/)
+

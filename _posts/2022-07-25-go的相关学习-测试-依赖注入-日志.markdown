@@ -1,0 +1,211 @@
+---
+title: go的相关学习-测试-依赖注入-日志
+author: not_you
+date: 2022-07-25 22:34:00 +0800
+categories: ["日常学习","go"]
+tags: ["go"]
+---
+
+之前写go，一直使用的就是原生的test，测试时则是直接虚拟环境启动。最近遇到了，无法使用虚拟环境，参数又非常多的情况，原生的test的支持就不够了。因此需要进行一些学习，记录以下。其实主要就是一些第三方包的使用。
+
+### 依赖注入 dig
+
+[dig官方链接 ](go.uber.org/dig)
+
+`dig`是uber开源的基于go语言的依赖注入框架,帮助开发者管理系统中对象的创建和
+
+维护，遵循设计模式的IOC原则。一般流程如下：
+
+- 创建一个容器：`dig.New`
+- 注册构造函数：为想要让`dig`容器管理的实例创建构造函数，构造函数可以有多个参数和多个返回值，这些参数是这些返回值的依赖，这些返回值都会被容器管理
+- 使用这些实例：编写一个函数，将需要使用的实例作为参数，然后调用Invoke执行我们编写的函数。框架在容器中找到函数的参数类型对应的实例，并调用函数
+
+当参数过多时，代码会变得非常难读。`dig`支持将全部的参数打包，只需要将`dig.in`内嵌进该类型中。
+
+```golang
+type Params {
+  dig.In
+
+  Arg1 *Arg1
+  Arg2 *Arg2
+  Arg3 *Arg3
+  Arg4 *Arg4
+}
+
+container.Provide(func (params Params) *Object {
+  // ...
+})
+```
+
+内嵌了`dig.In`之后，`dig`会将该类型中的其它字段看成`Object`的依赖，创建`Object`类型的对象时，会先将依赖的`Arg1/Arg2/Arg3/Arg4`创建好。
+
+
+
+而同样的，如果构造函数返回多个值，这些不同类型的值都会存储到`dig`容器中。参数过多会影响代码的可读性和可维护性，返回值过多同样也是如此。为此，`dig`提供了返回值对象，返回一个包含多个类型对象的对象。返回的类型，必须内嵌`dig.Out`：
+
+```golang
+type Results struct {
+  dig.Out
+
+  Result1 *Result1
+  Result2 *Result2
+  Result3 *Result3
+  Result4 *Result4
+}
+dig.Provide(func () (Results, error) {
+  // ...
+})
+```
+
+
+
+#### 参考
+
+[浅析go依赖注入框架dig](https://juejin.cn/post/7004648058705149982)
+
+[go每日一库dig-大俊的博客](https://darjun.github.io/2020/02/22/godailylib/dig/)
+
+ps：下面这个链接讲解的非常详细，从依赖注入的需求场景的小例子一点点讲的，连名词都解释。强推，读完感觉自己懂完了。还有这个人推荐了`wire`，谷歌自己开发的依赖注入，暂时用不到，之后再看
+
+[dependency-injection-in-go](https://blog.drewolson.org/dependency-injection-in-go)
+
+[Golang 依赖注入三部曲之二：dig 快速入门](http://luzhenqian.com/blog/go-dependency-injection-2/)
+
+
+
+### Testify
+
+之前主要用go的原生test，功能还是比较局限的,比如不支持断言，因此使用第三方包就可以对开发产生帮助。
+
+[testify的github链接](https://github.com/stretchr/testify)
+
+[testify的API文档](https://pkg.go.dev/github.com/stretchr/testify)
+
+1.使用assert进行断言,典型的写法如下
+
+```golang
+assert.True(t, IsPalindrome("detartrated"))
+assert.False(t, IsPalindrome("palindrome"))
+```
+
+因为testify底层基于go test，因此assert需要传入testing.T，可以用如下的简化
+
+```golang
+assert := assert.New(t)
+assert.XXXX(xxx)
+```
+
+将 Testify 与表驱动测试相结合
+
+```golang
+import (
+    "testing"
+    "github.com/stretchr/testify/assert"
+)
+
+func TestCalculate(t *testing.T) {
+    assert := assert.New(t) //这样简化后续传参
+
+    var tests = []struct {
+        input    int
+        expected int
+    }{
+        {2, 4},
+        {-1, 1},
+        {0, 2},
+        {-5, -3},
+        {99999, 100001},
+    }
+
+    for _, test := range tests {
+        assert.Equal(Calculate(test.input), test.expected)
+    }
+}
+```
+
+
+
+#### 参考
+
+[如何高效编写Go单元测试（一）](https://juejin.cn/post/6908938380114034701)
+
+[Improving Your Go Tests and Mocks With Testify](https://tutorialedge.net/golang/improving-your-tests-with-testify-go/)
+
+[golang 项目的单元测试](https://annatarhe.github.io/2020/08/19/how-to-do-test-in-go.html)
+
+[Top Go Modules: Writing Unit Tests with Testify](https://jfrog.com/blog/top-go-modules-writing-unit-tests-with-testify/)
+
+### go的stub：monkey patch
+
+[monkey patch的github链接](https://github.com/bouk/monkey)
+
+stub和mock的区别在于，前者关注测试对象行为，后者关注测试对象状态。
+
+具体使用上，对函数打桩见如下的例子
+
+```golang
+func TestIsConfigFileContain_MonkeyPatch(t *testing.T) {
+	ast := assert.New(t)
+	// 对os.Open进行打桩，固定返回(&os.File{}, nil)
+	monkey.Patch(os.Open, func(name string) (*os.File, error) {
+		return &os.File{}, nil
+	})
+	// 对ioutil.ReadAll进行打桩，固定返回([]byte("test for monkey patch"), nil)
+	monkey.Path(ioutil.ReadAll, func(r io.Reader) ([]byte, error) {
+		return []byte("test for monkey patch"), nil
+	})
+	// 测试用例结束时，解除打桩，避免影响其他用例
+	defer monkey.UnpatchAll()
+	assert.True(isConfigFileContain("test"))
+}
+```
+
+monkey patch对函数进行打桩的API很简单，形式如下`monkey.Patch(target function, <replacement function>)`，需要注意的是，在用例结束之后，记得调用`monkey.UnpatchAll`来解除打桩，避免影响其他用例。
+
+对于使用monkey patch为方法进行打桩的用法为`monkey.PatchInstanceMethod(<type>, <name>, <replacement>)`，其中`type`通过`reflect.TypeOf`获得，值得注意的是，`type`必须跟方法定义的接收者类型一致，如上述代码中，`Client.Get`方法的接收者是指针类型，因此`type`必须声明为`*Client`类型。
+
+
+
+[如何高效编写Go单元测试（二）打桩](https://juejin.cn/post/6916134886022037511)
+
+
+
+### 日志库：zap
+
+[zap的go文档](https://pkg.go.dev/go.uber.org/zap)
+
+日志库显然也是测试中十分重要的一类功能，
+
+go的原生logger提供了基本功能，优劣总结如下：
+
+- 优势
+
+它最大的优点是使用非常简单。我们可以设置任何`io.Writer`作为日志记录输出并向其发送要写入的日志。
+
+- 劣势
+
+  - 仅限基本的日志级别
+
+    - 只有一个`Print`选项。不支持`INFO`/`DEBUG`等多个级别。
+
+  - 对于错误日志，它有`Fatal`和`Panic`
+
+    - Fatal日志通过调用`os.Exit(1)`来结束程序
+
+    - Panic日志在写入日志消息之后抛出一个panic
+
+    - 缺少一个ERROR日志级别，这个级别可以在不抛出panic或退出程序的情况下记录错误
+
+  - 缺乏日志格式化的能力——例如记录调用者的函数名和行号，格式化日期和时间格式。等等。
+
+  - 不提供日志切割的能力。
+
+因此需要引入zap。
+
+Zap提供了两种类型的日志记录器—`Sugared Logger`和`Logger`。
+
+在性能很好但不是很关键的上下文中，使用`SugaredLogger`。它比其他结构化日志记录包快4-10倍，并且支持结构化和printf风格的日志记录。
+
+#### 参考
+
+[在Go语言项目中使用Zap日志库](https://www.liwenzhou.com/posts/Go/zap/)

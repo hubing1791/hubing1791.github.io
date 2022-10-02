@@ -14,7 +14,7 @@ tags: ["杂项","具体需求"]
 
 考虑到：
 
-- 我的仓库j目录绝大部分是按照底层目录为 号码\_难度\_题目名 来组织的 例如：4_difficult_median_of_two_sorted_arrays
+- 我的仓库目录绝大部分是按照 号码\_难度\_题目名 来组织的 例如：4_difficult_median_of_two_sorted_arrays
 - 博客对应的markdown文件是有对应的结构的
 
 因此，用python写了两个脚本完成了创建文件和拆分md到仓库的对应目录下
