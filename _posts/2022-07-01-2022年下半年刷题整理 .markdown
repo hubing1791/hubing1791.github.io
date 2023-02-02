@@ -173,5 +173,25 @@ python和go可能会混着写，估计go会用的越来越多了
 
 [题目链接](https://leetcode.cn/problems/stack-of-plates-lcci/)
 
-1.
+1.题目理解错了，popat是要出第几个栈，且出完以后不必移动后面的栈。
+
+
+
+1004，最大连续1的个数III
+
+[题目链接](https://leetcode.cn/problems/max-consecutive-ones-iii/)
+
+1.面试遇到的，使用了贪心加回溯的方法。
+
+2.最初版写法有两个问题，无法处理k给的过高从而使得k+1的个数比长度大的情况，无法处理k=0的
+
+3.还是官方解好
+
+
+
+### crack.04.01 节点间通路
+
+[题目链接](https://leetcode.cn/problems/route-between-nodes-lcci/)
+
+1.有一说一，直接看题解，我确实不会
 
