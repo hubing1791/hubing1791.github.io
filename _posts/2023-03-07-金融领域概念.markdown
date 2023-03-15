@@ -1,0 +1,13 @@
+---
+title: 金融领域概念
+author: not_you
+date: 2023-03-07 00:00:00 +0800
+categories: ["日常学习","量化"]
+tags: ["量化"]
+---
+
+因为一些实际的需要，需要了解金融领域的概念，记录一下方便自己之后查看。
+
+#### CTA
+
+Commodity Trading Advisor

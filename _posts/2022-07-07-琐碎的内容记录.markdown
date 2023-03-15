@@ -49,3 +49,35 @@ replace xxxxx => 相对路径or绝对路径
 ### git相关
 
 1.token本地过期时间在~/gitconfig里设置，gitlab token记录在.gitlabconfig, .netrc(linux密码记录文件)
+
+2.想把git的一些命令简化，参考这个文章[git设置alias](https://www.jianshu.com/p/d5cd8b96d6a7)，这儿把配置简单记录下
+
+```shell
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    pl = pull
+    ps = push
+    dt = difftool
+    l = log --stat
+    cp = cherry-pick
+    ca = commit -a
+    b = branch
+    pso = push origin
+    plo = pull origin
+    cm = commit -m
+    gst = git status
+    gd = git diff
+    gl = git pull
+    gp = git push
+    glo = git pull origin
+    gpo = git push origin
+    gcm = git common -m
+    gc = git checkout
+    gcm = git checkout master
+    gcd = git checkout develop
+    gb = git branch
+    ga = git add .
+```
+
