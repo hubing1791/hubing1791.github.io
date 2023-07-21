@@ -1,0 +1,67 @@
+---
+layout: post
+title: 开发环境完整布置
+author: not_you
+date: 2023-07-20 00:00:00 +0800
+categories: ["具体需求"]
+tags: ["具体需求","杂"]
+---
+
+清空了PC，并且决定以后平时写代码用自己的云服务器。记录一下一些小tips
+
+#### （1）PC配置git，ssh等
+
+[git安装](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git)
+
+注意不要安装github desktop，不好用。安装git for windows
+
+安装后建议配一下git alias
+
+```shell
+# 我常用的alias
+[alias]
+        gco = git checkout
+        gst = git status
+        ga = git add
+        gcm = git commit -m
+        gb = git branch
+```
+
+以及可以配下~/.ssh/config，这样就可以用ssh aaa登录远程服务
+
+``` shell
+Host aaa
+        Hostname x.x.x.x
+        Port 22
+        User xxx
+        IdentityFile ~/.ssh/id_rsa
+
+```
+
+安装vscode，有了上面ssh的配置也可以很方便的连接远程服务器
+
+#### （2）远程服务器
+
+##### 1.换zsh
+
+终究zsh比bash好用，换zsh还是很舒服的
+
+```shell
+sudo apt install zsh
+chsh -s /bin/zsh
+# reboot
+echo $SHELL
+# 值应该为/bin/zsh
+```
+
+再安装[oh-my-zsh](echo $SHELL)
+
+##### 2.装conda，
+
+我个人装了miniconda。先下载，列表在这[清华大学开源镜像站](https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/)，当然你去别的镜像站找也是一样的。下载后
+
+```shell
+bash xxx.sh
+```
+
+注意，如果安装较老的版本的话，脚本会去改~/.bashrc， 但是现在实际用的是~/.zshrc。就得手动加一个地址导入。

@@ -54,3 +54,8 @@ pin: true
 `yaml:"aa_bb_cc"` 写成了  `yaml:aa_bb_cc`
 ```
 
+
+
+### 202307_20
+
+变量命名是find和found用串了没发现
