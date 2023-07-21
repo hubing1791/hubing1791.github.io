@@ -1,0 +1,20 @@
+---
+title: 前端的一些零碎尝试
+author: not_you
+date: 2021-04-02 00::00 +0800
+categories: ["具体需求"]
+tags: ["前端","具体需求"]
+---
+
+因为一些实际的需求，需要开发一个简单的小系统。很长时间没有做相关的工作了，尤其是前端，记录一下
+
+**安装对应的环境**
+
+因为计划在写本博客时，计划是使用vue-element-ui+python来实现。首先要做前端界面的搭建。参考了以下的几篇
+
+[使用vue-cli搭建本地Vue项目](https://zhuanlan.zhihu.com/p/385696353)
+
+[Element-ui安装与使用](https://zhuanlan.zhihu.com/p/385765129)
+
+[node相关的版本控制](https://blog.csdn.net/qq_22713201/article/details/122486841)
+

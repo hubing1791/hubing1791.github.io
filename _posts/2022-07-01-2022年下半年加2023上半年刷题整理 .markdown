@@ -1,5 +1,5 @@
 ---
-title: 2022年下半年刷题整理
+title: 2022年下半年加2023上半年刷题整理
 author: not_you
 date: 2022-07-01 00:00:00 +0800
 categories: ["leetcode"]
@@ -194,4 +194,6 @@ python和go可能会混着写，估计go会用的越来越多了
 [题目链接](https://leetcode.cn/problems/route-between-nodes-lcci/)
 
 1.有一说一，直接看题解，我确实不会
+
+2.[DFS solution](https://leetcode.cn/problems/route-between-nodes-lcci/solution/huan-bu-dong-lai-chui-wo-xi-lie-jing-jia-opwd/)这个题解很详细。
 
