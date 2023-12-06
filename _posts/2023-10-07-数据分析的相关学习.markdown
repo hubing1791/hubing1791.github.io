@@ -1,0 +1,34 @@
+---
+title: python的相关学习-数据分析相关
+author: not_you
+date: 2022-08-04 00:00:00 +0800
+categories: ["日常学习","python"]
+tags: ["python"]
+---
+
+###  代码位置
+
+
+
+#### 稀疏df
+
+首先判断df是否全部为0或者NaN，再找出有意义的值
+
+
+
+#### 使用字典映射一个列
+
+- 使用字典映射一个列
+- rename
+- 
+
+#### df.query使用
+
+#### 使用python与shell进行交互
+
+#### 使用pool并发执行函数
+
+#### 画图
+
+
+

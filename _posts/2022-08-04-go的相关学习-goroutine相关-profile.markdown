@@ -91,3 +91,10 @@ func (wg *WaitGroup) state() (statep *uint64, semap *uint32) {
 #### 参考
 
 [有点不安全却又一亮的unsafe.Pointer](https://segmentfault.com/a/1190000017389782)
+
+
+
+
+
+#### profile
+

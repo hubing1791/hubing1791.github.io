@@ -59,3 +59,11 @@ pin: true
 ### 202307_20
 
 变量命名是find和found用串了没发现
+
+
+
+
+
+### 202307_20_gitignore文件中忽视env目录导致make docker异常
+
+原因还需要再研究下

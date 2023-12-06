@@ -32,6 +32,28 @@ pip install -e .
 
 - less
 
+##### linux下搜索文件
+
+- locate:  loacte通过搜索一个已经建立的数据库来在系统中高速查找文件或目录，基本用法如下
+
+```shell
+locate keyword # 查找keyword
+locate -l 2 keyword  # -l指定显示数量
+locate -i keyword # -i 忽视大小写
+```
+
+- find:只能查找文件
+
+```shell
+find [path] [pattern]
+```
+
+
+
+
+
+
+
 ### go相关
 
 ##### 1.使用本地仓库
@@ -81,3 +103,16 @@ replace xxxxx => 相对路径or绝对路径
     ga = git add .
 ```
 
+3.通过配置--extra-index-url来引入额外的pypi
+
+### docker相关
+
+##### docker socket的位置
+
+```shell
+echo $DOCKER_HOST
+```
+
+#### 零碎
+
+- docker命令可以通过 -H指定套接字,docker compose无法指定，需要使用环境变量

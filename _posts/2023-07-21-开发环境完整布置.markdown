@@ -54,7 +54,13 @@ echo $SHELL
 # 值应该为/bin/zsh
 ```
 
-再安装[oh-my-zsh](echo $SHELL)
+再安装[oh-my-zsh]
+
+不过鄙人抛弃了oh-my-zsh了最近
+
+换了[prezto](git clone --recursive https://github.com/sorin-ionescu/prezto.git )
+
+
 
 ##### 2.装conda，
 
@@ -65,3 +71,14 @@ bash xxx.sh
 ```
 
 注意，如果安装较老的版本的话，脚本会去改~/.bashrc， 但是现在实际用的是~/.zshrc。就得手动加一个地址导入。
+
+##### 3.装go环境
+
+之前没体验过阿里云服务器，感觉有点怪，直接文件里写export导入不了环境。vscode连上后，会问你要不要安装一些tools，装就完事了。
+
+首先，初始go env如果没改过，那么$HOME/.config/go/env文件就不存在，一开始安装go tools失败了，还得改下代理。
+
+```shell
+go env -w GOPROXY=https://goproxy.cn,direct
+```
+

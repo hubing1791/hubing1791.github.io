@@ -37,6 +37,8 @@ toc: false
 gem install tzinfo --version '1.2' //gem 用这种方式来指定安装包版本
 ```
 
+jekyll得安装2.4的ruby，这玩意迟早入土。windows下使用ruby体验极差。
 
+C：rubyxxx下能找到卸载用的exe
 
 [gems安装](https://rubygems.org/pages/download)
